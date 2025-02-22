@@ -10,8 +10,14 @@
 <body>
     <div class="background-blur"></div>
     <div class="login-container">
-        <h2>Login to FitTrack</h2>
+        <h3>Register to FitTrack</h3>
         <form action="submit.php" method="POST">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+
             <label for="username">Username</label>
             <input type="text" id="username" placeholder="Enter your username">
             
@@ -19,11 +25,11 @@
             <input type="password" id="password" placeholder="Enter your password">
             
             <div>
-                <span>Ngga punya akun?</span>
-                <a href="register.html" class="register-text">Sign Up</a>
+                <span>Udah punya akun?</span>
+                <a href="login.html" class="register-text">Login</a>
             </div>
             <div class="button-group">
-                <button type="submit" class="login-btn">Login</button>
+                <button type="submit" class="login-btn">Daftar</button>
                 <a href="index.html" class="back-btn">Back</a>
             </div>
         </form>
