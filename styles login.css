@@ -10,7 +10,7 @@
 
         .background-blur {
             content: "";
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -64,11 +64,15 @@
         .back-btn {
             background: #888;
             color: white;
+            transition: box-shadow 0.3s ease-in-out;
         }
+        
+
         .login-btn {
             background: #ff6600;
             color: white;
+            transition: box-shadow 0.3s ease-in-out;
         }
         .back-btn:hover, .login-btn:hover {
-            opacity: 0.8;
+            box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.4);
         }
