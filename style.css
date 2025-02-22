@@ -1,0 +1,158 @@
+/*  */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+}
+
+/* Dashboard */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #0a0a0a(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FFD700;
+    margin-left: 20px;
+    ;
+}
+.nav-links {
+    padding: 0;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300; 
+    justify-content: center;
+    display: flex;
+    gap: 70px;
+}
+
+
+.nav-links li {
+    display: inline;
+}
+.nav-links a {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: white;
+    
+}
+
+.nav-links a:hover {
+    color:  rgba(197, 197, 197, 0.7); 
+}
+
+
+.sign-in {
+    margin-right: 20px;
+    padding: 10px 20px;
+    border: none;
+    background: white;
+    color: #0a0a0a;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.5);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.sign-in:hover {
+    box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.9);
+}
+
+
+.hero {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    text-align: center;
+    font-size: 2rem;
+}
+
+
+/* Tengah */
+.cta {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #FFD700;
+    color: black;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 80px rgba(255, 215, 0, 0.5);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.cta:hover {
+    box-shadow: 0px 0px 80px rgba(255, 215, 0, 0.9); 
+}
+
+
+
+/* Dashboard bawah */
+.content {
+    min-height: 90vh; /* Konten minimal setinggi layar */
+    padding: 50px;
+    background: #1a1a1a; /* Biar kelihatan beda */
+}
+
+
+/* Style dropdown menu */
+.dropdown {
+    position: relative; 
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: #222;
+    display: none;
+    width: 200px;
+    padding: 0;
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.7);
+    border-radius: 3px;
+    z-index: 10;
+    list-style: none; 
+    margin: 0;
+}
+
+
+.dropdown-menu li {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.dropdown-menu li:hover {
+    background: #333;
+    padding: 0px;
+    list-style: none;
+}
+
+/* Munculkan dropdown saat hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+
+
