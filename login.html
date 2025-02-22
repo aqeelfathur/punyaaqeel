@@ -11,7 +11,7 @@
     <div class="background-blur"></div>
     <div class="login-container">
         <h2>Login to FitTrack</h2>
-        <form>
+        <form action="submit.php" method="POST">
             <label for="username">Username</label>
             <input type="text" id="username" placeholder="Enter your username">
             
@@ -19,7 +19,7 @@
             <input type="password" id="password" placeholder="Enter your password">
             
             <div class="button-group">
-                <a href="index.html" class="login-btn">Login</a>
+                <button type="submit" class="login-btn">Login</button>
                 <a href="index.html" class="back-btn">Back</a>
             </div>
         </form>
