@@ -31,8 +31,6 @@ nav {
     justify-content: center;
     display: flex;
     gap: 70px;
-   
-    
 }
 
 
@@ -46,6 +44,12 @@ nav {
     color: white;
     
 }
+
+.nav-links a:hover {
+    color:  rgba(197, 197, 197, 0.7); 
+}
+
+
 .sign-in {
     margin-right: 20px;
     padding: 10px 20px;
@@ -103,3 +107,52 @@ nav {
     padding: 50px;
     background: #1a1a1a; /* Biar kelihatan beda */
 }
+
+
+/* Style dropdown menu */
+.dropdown {
+    position: relative; 
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: #222;
+    display: none;
+    width: 200px;
+    padding: 0;
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.7);
+    border-radius: 3px;
+    z-index: 10;
+    list-style: none; 
+    margin: 0;
+}
+
+
+.dropdown-menu li {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.dropdown-menu li:hover {
+    background: #333;
+    padding: 0px;
+    list-style: none;
+}
+
+/* Munculkan dropdown saat hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+
+
