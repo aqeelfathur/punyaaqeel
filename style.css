@@ -26,16 +26,14 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background: rgba(10, 10, 10, 0.8); 
+    background: rgb(0, 0, 0); 
     backdrop-filter: blur(10px);
     border-radius: 100px;
     width: 95%; 
-    margin: 10px auto; 
 
     position: fixed; 
-    top: 1px; 
-    left: 50%; /* Agar tetap di tengah */
-    transform: translateX(-50%); /* Pusatkan */
+    left: 50%; 
+    transform: translateX(-50%);
     z-index: 1000;
 }
 
