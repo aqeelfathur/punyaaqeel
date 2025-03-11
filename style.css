@@ -7,15 +7,6 @@ body {
     text-align: center;
 }
 
-/* Dashboard */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background: #0a0a0a(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-}
 
 @keyframes appear {
     from {
@@ -27,6 +18,27 @@ nav {
         transform: translateX(0px)
     }
 }
+
+/* Dashboard */
+nav {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: rgb(10, 10, 10); /* Warna hitam semi-transparan */
+    backdrop-filter: blur(10px);
+    border-radius: 100px;
+    width: 95%; /* Pastikan ada ukuran agar border-radius terlihat */
+    margin: 10px auto; /* Pusatkan navbar */
+
+    position: fixed; /* Biar tetap di atas */
+    top: 1px; /* Jarak dari atas */
+    left: 50%; /* Agar tetap di tengah */
+    transform: translateX(-50%); /* Pusatkan */
+    z-index: 1000;
+}
+
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
@@ -55,6 +67,8 @@ nav {
     color: white;
     transition: 0.3s;
     
+
+    
 }
 
 .nav-links a:hover {
@@ -64,19 +78,20 @@ nav {
 
 .sign-in {
     margin-right: 20px;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border: none;
-    background: white;
+    background: #FFD700;
     color: #0a0a0a;
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.5);
     transition: box-shadow 0.3s ease-in-out;
+    border-radius: 1000px;
 }
 
 .sign-in:hover {
-    box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.9);
+    box-shadow: 40px 0px 100px #ffd900a7, -40px 0px 100px #f7eaa5a7;
 }
 
 
@@ -95,8 +110,8 @@ nav {
 
 /* Tengah */
 .cta {
-    margin-top: 10px;
-    padding: 10px 20px;
+    margin-top: 0   px;
+    padding: 15px 20px;
     background: #FFD700;
     color: black;
     font-weight: 600;
@@ -105,10 +120,12 @@ nav {
     cursor: pointer;
     box-shadow: 0px 0px 80px rgba(255, 215, 0, 0.5);
     transition: box-shadow 0.3s ease-in-out;
+    border-radius: 1000px;
+
 }
 
 .cta:hover {
-    box-shadow: 0px 0px 80px rgba(255, 215, 0, 0.9); 
+    box-shadow: 40px 0px 100px #ffd900a7, -40px 0px 100px #f7eaa5a7;
 }
 
 
@@ -130,6 +147,15 @@ nav {
     height: 90vh;
     text-align: center;
     font-size: 1.5rem;
+}
+
+.content-container {
+    background: rgba(111, 111, 111, 0.6);
+    padding: 50px;
+    border-radius: 40px;
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(10px);
 }
 
 
