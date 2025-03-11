@@ -6,45 +6,50 @@
     <title>FitTrack</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap" rel="stylesheet">
-
 </head>
 <body>
     <header>
         <nav>
-            <div width: 10px
-            class="logo">FIT TRACK</div>
-            <div>
-                <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li class="dropdown Programs">
-                        <a href="#">Programs</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Workout Programs</a></li>
-                            <li><a href="#">Load</a></li>
-                            <li><a href="#">Custom</a></li>
-                            <li><a href="#">Nutrition</a></li>
-                            <li><a href="#">Calendar</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Community</a></li>
-                    <li><a href="#">About Us</a></li>
-                </ul>
-            </div>
-            <a href="login.html">
-                <button class="sign-in">Sign in</button>
-            </a>            
+            <div class="logo">FIT TRACK</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li class="dropdown">
+                    <a href="#programs">Programs</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#workout">Workout Programs</a></li>
+                        <li><a href="#nutrition">Load</a></li>
+                        <li><a href="#nutrition">Nutrition</a></li>
+                        <li><a href="#nutrition">Calendar</a></li>
+                        <li><a href="#nutrition">Custom</a></li>
+                    </ul>
+                </li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+            <a href="login.html"><button class="sign-in">Sign in</button></a>
         </nav>
     </header>
     
-    <section class="hero">
+    <section id="home" class="section hero">
         <h1>Fit Your Muscles<br> with FitTrack</h1>
-        <button class="cta">Get Started</button>
+        <a href="register.html"><button class="cta">Get Started</button></a>
     </section>
 
-    <section class="content">
-        <h2>More Content</h2>
-        <p>Hai</p>
+    <section id="programs" class="section content">
+        <h2>Our Programs</h2>
+        <p>Workout and Nutrition Plans</p>
     </section>
     
+    <section id="community" class="section content">
+        <h2>Join Our Community</h2>
+        <p>Stay motivated with like-minded people</p>
+    </section>
+    
+    <section id="about" class="section content">
+        <h2>About Us</h2>
+        <p>Learn more about our mission</p>
+    </section>
+    
+
 </body>
 </html>

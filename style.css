@@ -12,9 +12,20 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     background: #0a0a0a(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+}
+
+@keyframes appear {
+    from {
+        opacity : 0;
+        transform: translateX(-100px)
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px)
+    }
 }
 .logo {
     font-size: 1.5rem;
@@ -76,7 +87,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    height: 90vh;
     text-align: center;
     font-size: 2rem;
 }
@@ -104,9 +115,12 @@ nav {
 
 /* Dashboard bawah */
 .content {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
     min-height: 90vh; /* Konten minimal setinggi layar */
     padding: 50px;
-    background: #1a1a1a; /* Biar kelihatan beda */
+    background: #000000; /* Biar kelihatan beda */
 }
 
 
