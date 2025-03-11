@@ -26,16 +26,16 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background: rgb(10, 10, 10); /* Warna hitam semi-transparan */
+    background: rgba(10, 10, 10, 0.8); 
     backdrop-filter: blur(10px);
     border-radius: 100px;
-    width: 95%; /* Pastikan ada ukuran agar border-radius terlihat */
-    margin: 10px auto; /* Pusatkan navbar */
+    width: 95%; 
+    margin: 10px auto; 
 
-    position: fixed; /* Biar tetap di atas */
-    top: 1px; /* Jarak dari atas */
-    left: 50%; /* Agar tetap di tengah */
-    transform: translateX(-50%); /* Pusatkan */
+    position: fixed; 
+    top: 1px; 
+    left: 50%; /
+    transform: translateX(-50%); 
     z-index: 1000;
 }
 
