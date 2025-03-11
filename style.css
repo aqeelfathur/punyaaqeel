@@ -34,8 +34,8 @@ nav {
 
     position: fixed; 
     top: 1px; 
-    left: 50%; /
-    transform: translateX(-50%); 
+    left: 50%; /* Agar tetap di tengah */
+    transform: translateX(-50%); /* Pusatkan */
     z-index: 1000;
 }
 
