@@ -1,10 +1,16 @@
-/*  */
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background-color: #000000;
     color: white;
     text-align: center;
+    background-image: url(background_login.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    backdrop-filter: blur(10px); 
+    
 }
 
 
@@ -28,9 +34,8 @@ nav {
     padding: 10px;
     background: rgb(0, 0, 0); 
     backdrop-filter: blur(10px);
-    border-radius: 100px;
-    width: 95%; 
-
+    width: 100%; 
+    box-shadow: 0px 30px 80px#000000;
     position: fixed; 
     left: 50%; 
     transform: translateX(-50%);
@@ -93,6 +98,11 @@ nav {
 }
 
 
+
+
+
+
+/* Tengah */
 .hero {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
@@ -100,13 +110,14 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 100vh;
     text-align: center;
     font-size: 2rem;
+    z-index: -1;
+
+    
+
 }
-
-
-/* Tengah */
 .cta {
     margin-top: 0   px;
     padding: 15px 20px;
@@ -128,36 +139,52 @@ nav {
 
 
 
-/* Dashboard bawah */
 .content {
-    animation: appear linear;
-    animation-timeline: view();
-    animation-range: entry 0% cover 40%;
-    min-height: 90vh; /* Konten minimal setinggi layar */
+    
+    min-height: 90vh; 
     padding: 10px;
-    background: #000000; /* Biar kelihatan beda */
+    background: #000000; 
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;  
     justify-content: center;
     align-items: center;
-    height: 90vh;
-    text-align: center;
+    height: 100vh;
+    text-align: left;
     font-size: 1.5rem;
+    gap: 30px;  
 }
 
-.content-container {
-    background: rgba(111, 111, 111, 0.6);
-    padding: 50px;
-    border-radius: 40px;
-    text-align: center;
-    color: white;
-    backdrop-filter: blur(10px);
+.content-wrap{
+    background: #000000; 
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+    display: flex;
+    flex-direction: row;  
+    justify-content: center;
+    align-items: center;
+}
+.content img {
+    max-width: 40%;  
+    height: auto;
+    border-radius: 80px;  
 }
 
+.content-text {
+    max-width: 40%; 
+}
 
-/* Style dropdown menu */
+.content-text h2 {
+    margin-bottom: 5px; 
+}
+
+.content-text p {
+    margin-top: 0; 
+}
+
+/*dropdown*/
 .dropdown {
     position: relative; 
 }
@@ -196,7 +223,7 @@ nav {
     list-style: none;
 }
 
-/* Munculkan dropdown saat hover */
+
 .dropdown:hover .dropdown-menu {
     display: block;
 }
