@@ -194,15 +194,15 @@ nav {
     top: 100%; 
     left: 50%; 
     transform: translateX(-50%); 
-    background: #222;
+    background: #181717;
     display: none;
-    width: 200px;
+    width: 250px;
     padding: 0;
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.7);
     border-radius: 3px;
     z-index: 10;
     list-style: none; 
     margin: 0;
+    border-radius: 40px;
 }
 
 
