@@ -320,3 +320,15 @@ nav {
   top: 359px;
   left: 820px;
 }
+
+.overlap-group {
+  /* Pastikan elemen ini menunjukkan bahwa interaksi dimungkinkan */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.overlap-group:hover {
+  /* Bisa ganti background atau sedikit transparansi untuk efek hover */
+  background-color: rgba(15,12,27,0.9);
+}
+
