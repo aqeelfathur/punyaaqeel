@@ -1,0 +1,334 @@
+
+/* NAVIGATION BAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: rgb(0, 0, 0);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  box-shadow: 0px 30px 30px #000000;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #FFD700;
+  margin-left: 20px;
+}
+
+.nav-links {
+  list-style: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  justify-content: center;
+  display: flex;
+  gap: 70px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: white;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: rgba(197, 197, 197, 0.7);
+}
+
+.sign-in {
+  font-family: 'Poppins', sans-serif;
+  margin-right: 20px;
+  padding: 10px 20px;
+  border: none;
+  background: #ffffff;
+  color: #0a0a0a;
+  font-weight: 400;
+  border-radius: 1000px;
+  cursor: pointer;
+  box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.5);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.sign-in:hover {
+  box-shadow: 40px 0px 100px #ffd900a7, -40px 0px 100px #f7eaa5a7;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #181717;
+  display: none;
+  width: 250px;
+  padding: 0;
+  border-radius: 40px;
+  z-index: 10;
+  list-style: none;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+.dropdown-menu li:hover {
+  background: #333;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* SEARCH BAR */
+.search-bar form {
+  display: flex;
+  align-items: center;
+  background-color: rgb(244, 244, 244);
+  padding: 5px 15px;
+  border-radius: 30px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  font-size: 16px;
+  background-color: transparent;
+  color: #000;
+}
+
+.search-bar button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar .material-icons {
+  color: #333;
+}
+
+/*  HEADER SECTION  */
+.workout-header {
+  padding-top: 100px;
+  padding-bottom: 20px;
+  text-align: left;
+}
+
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.search-and-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+
+
+.load {
+  background-color: #0f0c1b;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+  
+.load .div {
+  background-color: #0f0c1b;
+  overflow: hidden;
+  width: 1440px;
+  height: 1024px;
+  position: relative;
+}
+  
+.load .tengah {
+  position: absolute;
+  width: 169px;
+  height: 85px;
+  top: 171px;
+  left: 140px;
+}
+  
+.load .text-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Inter", Helvetica;
+  font-weight: 600;
+  font-style: italic;
+  color: #ffffff;
+  font-size: 70px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+  
+.load .group {
+  position: absolute;
+  width: 547px;
+  height: 306px;
+  top: 359px;
+  left: 140px;
+}
+  
+.load .overlap {
+  position: relative;
+  width: 543px;
+  height: 306px;
+  background-image: url(https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+  
+.load .text-wrapper-2 {
+  position: absolute;
+  top: 174px;
+  left: 14px;
+  font-family: "Inter", Helvetica;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+  
+.load .p {
+  position: absolute;
+  width: 222px;
+  top: 204px;
+  left: 15px;
+  font-family: "Inter", Helvetica;
+  font-weight: 300;
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+  
+.load .overlap-group-wrapper {
+  position: absolute;
+  width: 219px;
+  height: 38px;
+  top: 261px;
+  left: 181px;
+}
+  
+.load .overlap-group {
+  position: relative;
+  width: 217px;
+  height: 38px;
+  background-color: #0f0c1b;
+  border-radius: 20px;
+}
+  
+.load .text-wrapper-3 {
+  position: absolute;
+  top: 7px;
+  left: 50px;
+  font-family: "Inter", Helvetica;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+  
+.load .overlap-wrapper {
+  position: absolute;
+  width: 547px;
+  height: 306px;
+  top: 743px;
+  left: 820px;
+}
+  
+.load .overlap-2 {
+  position: relative;
+  width: 543px;
+  height: 299px;
+}
+  
+.load .image {
+  width: 543px;
+  height: 281px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+  
+.load .div-wrapper {
+  position: absolute;
+  width: 547px;
+  height: 306px;
+  top: 743px;
+  left: 140px;
+}
+  
+.load .group-2 {
+  position: absolute;
+  width: 547px;
+  height: 306px;
+  top: 359px;
+  left: 820px;
+}
+
+.overlap-group {
+  /* Pastikan elemen ini menunjukkan bahwa interaksi dimungkinkan */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.overlap-group:hover {
+  /* Bisa ganti background atau sedikit transparansi untuk efek hover */
+  background-color: rgba(15,12,27,0.9);
+}
+
