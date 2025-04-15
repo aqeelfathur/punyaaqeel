@@ -119,7 +119,7 @@ nav {
 
 .dropdown-menu li {
     padding: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #ffffff1a;
 }
 
 .dropdown-menu li a {
@@ -154,13 +154,13 @@ nav {
     margin-bottom: 20px;
 }
 
-/* SEARCH AND FILTER SECTION */
+/* SEARCH AND FILTER SECTION AND BUTTON ADD*/
 .search-and-filter {
     display: flex;
-    justify-content: space-between; /* Pushes filter bar to the right */
     align-items: center;
     margin-bottom: 20px;
-    flex-wrap: wrap;    
+    flex-wrap: wrap;
+    gap: 15px; /* Memberikan jarak yang konsisten antar elemen */
 }
 
 /* SEARCH BAR */
@@ -200,12 +200,39 @@ nav {
     color: #333;
 }
 
+/* BUTTON ADD */
+
+/* Tombol add */
+.add-bar {
+    display: flex;
+    margin-left: 20px; /* Menambahkan margin kiri untuk mendekatkan ke search bar */
+}
+
+.add-btn{
+    font-family: 'Poppins', sans-serif;
+    padding: 10px 20px;
+    border: none;
+    background-color: #FFD700;
+    color: #333;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.add-btn:hover {
+    background-color: #ddd;
+    transform: scale(1.05);
+}
+
+
 /* FILTER BAR */
 .filter-bar {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    justify-content: flex-start; 
+    margin-left: auto; /* Mendorong filter bar ke kanan */
 }
 
 .filter-btn {
