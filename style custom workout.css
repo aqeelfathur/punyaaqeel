@@ -433,6 +433,53 @@ nav {
     background-color: rgba(255, 107, 107, 0.15);
 }
 
+/*dropdown*/
+.dropdown {
+    position: relative; 
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: #181717;
+    display: none;
+    width: 250px;
+    padding: 0;
+    border-radius: 3px;
+    z-index: 10;
+    list-style: none; 
+    margin: 0;
+    border-radius: 40px;
+}
+
+
+.dropdown-menu li {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.dropdown-menu li:hover {
+    background: #333;
+    padding: 0px;
+    list-style: none;
+}
+
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+
+
 
 /* RESPONSIVE ADJUSTMENTS */
 @media (max-width: 768px) {
