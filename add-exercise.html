@@ -61,8 +61,8 @@
 
                         <div class="exercise-grid">
                             <!-- Exercise Cards -->
-                            <div class="exercise-card">
-                                <div class="exercise-image">
+                            <div class="exercise-card" data-category="body-weight">
+                                <div class="exercise-image" >
                                     <img src="push up.jpg" alt="Push Up">
                                     <div class="exercise-overlay">
                                         <h3>Push Up</h3>
@@ -72,8 +72,8 @@
                                 </div>
                             </div>
 
-                            <div class="exercise-card">
-                                <div class="exercise-image">
+                            <div class="exercise-card" data-category="body-weight">
+                                <div class="exercise-image" >
                                     <img src="back up.webp" alt="Back Up">
                                     <div class="exercise-overlay">
                                         <h3>Back Up</h3>
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
 
-                            <div class="exercise-card">
+                            <div class="exercise-card" data-category="body-weight">
                                 <div class="exercise-image">
                                     <img src="sit up.jpg" alt="Sit Up">
                                     <div class="exercise-overlay">
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
 
-                            <div class="exercise-card">
+                            <div class="exercise-card" data-category="body-weight">
                                 <div class="exercise-image">
                                     <img src="pull up.webp" alt="Pull Up">
                                     <div class="exercise-overlay">
@@ -160,7 +160,33 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Add exercise functionality
             const addButtons = document.querySelectorAll('.add-btn');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.exercise-card');
             
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.textContent.toLowerCase().replace(' ', '-');
+                    
+                    // Filter cards
+                    cards.forEach(card => {
+                        if (filterValue === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            if (card.dataset.category === filterValue) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+
             addButtons.forEach(button => {
                 button.addEventListener('click', function(e) {
                     const card = e.target.closest('.exercise-card');
@@ -236,6 +262,15 @@
                 // Navigate to program summary or back to programs page
                 window.location.href = 'custom workout.html';
             });
+
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-icon')) {
+                    const repsSpan = e.target.parentElement.querySelector('span');
+                    let reps = parseInt(repsSpan.textContent);
+                    repsSpan.textContent = `${reps + 5}x`;
+                }
+            });
+
         });
     </script>
 </body>

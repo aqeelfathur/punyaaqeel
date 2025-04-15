@@ -327,12 +327,13 @@ nav {
 
 
 .load-btn {
+    font-family: 'Poppins',sans-serif;
     display: flex;
     padding: 10px 20px;
     border: none;
     background-color: #FFD700;
     color: #000;
-    font-weight: bold;
+    font-weight: 400;
     border-radius: 1000px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -355,6 +356,7 @@ nav {
 }
 
 .options-btn {
+    
     background-color: rgba(0, 0, 0, 0.5);
     border: none;
     border-radius: 50%;
@@ -390,6 +392,7 @@ nav {
 }
 
 .option-item {
+    font-family: 'Poppins', sans-serif;
     padding: 12px 15px;
     width: 100%;
     text-align: left;
@@ -400,6 +403,8 @@ nav {
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
+
+
 
 .option-item:hover {
     background-color: #333;
