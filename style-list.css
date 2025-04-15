@@ -1,0 +1,141 @@
+/* style-list.css */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0f0c1b;
+    color: #fff;
+    padding-top: 40px;
+    margin: 0;
+  }
+  
+  .container-list {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .container-list h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+
+  
+  
+  /* Tombol Finish Workout */
+  #finishWorkout {
+    width: 100%;
+    padding: 15px;
+    background: #276bc5;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  #finishWorkout:disabled {
+    background: #555;
+    cursor: not-allowed;
+  }
+
+  .load .div {
+    background-color: #0f0c1b;
+    width: 1440px;
+    height: 1024px;
+    position: relative;
+  }
+    
+  .load .group {
+    position: absolute;
+    width: 547px;
+    height: 306px;
+    top: 359px;
+    left: 140px;
+  }
+    
+  .load .overlap {
+    position: relative;
+    width: 543px;
+    height: 306px;
+    background-image: url(https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png);
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+    
+  .load .overlap-group-wrapper {
+    position: absolute;
+    width: 219px;
+    height: 38px;
+    top: 261px;
+    left: 181px;
+  }
+    
+  .load .overlap-group {
+    position: relative;
+    width: 100px;
+    height: 40px;
+    background-color: #fffdfd;
+    border-radius: 30px;
+    box-shadow: 0px 4px 100px 20px #9837c5;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+    
+  .load .overlap-group:hover {
+    background-color: rgba(15,12,27,0.9);
+  }
+    
+  .load .text-wrapper-3 {
+    position: absolute;
+    top: 7px;
+    left: 50px;
+    font-family: "Inter", Helvetica;
+    font-weight: 800;
+    color: #ffffff;
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; /* jarak antar card */
+    padding: 10px 0;
+  }
+  
+  .card {
+    background-color: #0f0c1b;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .card-info {
+    padding: 10px 15px;
+    background-color: #0f0c1b;
+  }
+  
+  .card-info h2 {
+    margin: 0;
+    font-family: "Inter", Helvetica;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  
+  .card-info input[type="checkbox"] {
+    transform: scale(1.2);
+  }
