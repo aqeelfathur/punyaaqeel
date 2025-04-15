@@ -1,6 +1,27 @@
-/* NAVIGATION BAR */
-nav {
+/* Reset and base styles to match workout page */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  backdrop-filter: blur(10px);
+}
 
+/* CONTAINER */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* NAVIGATION - Exact match */
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,6 +44,7 @@ nav {
 }
 
 .nav-links {
+  padding: 0;
   list-style: none;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
@@ -65,7 +87,7 @@ nav {
   box-shadow: 40px 0px 100px #ffd900a7, -40px 0px 100px #f7eaa5a7;
 }
 
-/* DROPDOWN */
+/* DROPDOWN - Exact match */
 .dropdown {
   position: relative;
 }
@@ -97,14 +119,38 @@ nav {
 }
 
 .dropdown-menu li:hover {
-  background: #333;
 }
 
 .dropdown:hover .dropdown-menu {
   display: block;
 }
 
-/* SEARCH BAR */
+/* WORKOUT HEADER - Exact match */
+.workout-header {
+  padding-top: 100px;
+  padding-bottom: 20px;
+  text-align: left;
+  background-color: #000000;
+}
+
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+/* SEARCH AND FILTER SECTION - Exact match */
+.search-and-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* SEARCH BAR - Exact match */
 .search-bar form {
   display: flex;
   align-items: center;
@@ -141,7 +187,7 @@ nav {
   color: #333;
 }
 
-/* FILTER BAR - Added from workout-programs.css */
+/* FILTER BAR - Exact match */
 .filter-bar {
   display: flex;
   gap: 10px;
@@ -166,221 +212,155 @@ nav {
 }
 
 .filter-btn.active {
-  background-color: #007BFF;
+  background-color: #FFD700;
+}
+
+/* WORKOUT SECTION - Exact match */
+.workout-section {
+  padding: 0 0 60px;
+}
+
+/* CARD STYLES - Exact match for load cards */
+.workout-cards,
+.load-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  transition: all 0.3s ease;
+}
+
+.card,
+.program-card {
+  background-color: transparent;
+  color: white;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  height: 240px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.card:hover,
+.program-card:hover {
+  transform: translateY(-5px);
+}
+
+.card img,
+.program-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card-content,
+.program-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 100%);
+  text-align: left;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card h3,
+.program-card h3 {
+  margin: 0 0 5px;
+  font-size: 1.4rem;
   color: white;
 }
 
-/*  HEADER SECTION  */
-.workout-header {
-  background-color: #0f0c1b; /* Match the background color */
-  padding-top: 100px;
-  padding-bottom: 20px;
-  text-align: left;
-  margin-top: 0;
+.card p,
+.program-card p {
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
 }
 
-.section-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-style: italic;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #ffffff;
-}
-
-.search-and-filter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
-/* FIX: Ensuring no white space appears */
-body {
-  background-color: #0f0c1b;
-  margin: 0;
-  padding: 0;
-  color: #ffffff;
-  min-height: 100vh;
-}
-
-.load {
-  background-color: #0f0c1b;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  margin-top: 0;
-  padding-top: 0;
-}
-  
-.load .div {
-  background-color: #0f0c1b;
-  overflow: hidden;
-  width: 1440px;
-  height: 1024px;
-  position: relative;
-}
-  
-.load .tengah {
-  position: absolute;
-  width: 169px;
-  height: 85px;
-  top: 171px;
-  left: 140px;
-}
-  
-.load .text-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-family: "Inter", Helvetica;
-  font-weight: 600;
-  font-style: italic;
-  color: #ffffff;
-  font-size: 70px;
-  letter-spacing: 0;
-  line-height: normal;
-}
-  
-.load .group {
-  position: absolute;
-  width: 547px;
-  height: 306px;
-  top: 359px;
-  left: 140px;
-}
-  
-.load .overlap {
-  position: relative;
-  width: 543px;
-  height: 306px;
-  background-image: url(https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png);
-  background-size: cover;
-  background-position: 50% 50%;
-}
-  
-.load .text-wrapper-2 {
-  position: absolute;
-  top: 174px;
-  left: 14px;
-  font-family: "Inter", Helvetica;
-  font-weight: 500;
-  color: #ffffff;
-  font-size: 20px;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-}
-  
-.load .p {
-  position: absolute;
-  width: 222px;
-  top: 204px;
-  left: 15px;
-  font-family: "Inter", Helvetica;
-  font-weight: 300;
-  color: #ffffff;
-  font-size: 12px;
-  letter-spacing: 0;
-  line-height: normal;
-}
-  
-.load .overlap-group-wrapper {
-  position: absolute;
-  width: 219px;
-  height: 38px;
-  top: 261px;
-  left: 181px;
-}
-  
-.load .overlap-group {
-  position: relative;
-  width: 217px;
-  height: 38px;
-  background-color: #0f0c1b;
-  border-radius: 20px;
-}
-  
-.load .text-wrapper-3 {
-  position: absolute;
-  top: 7px;
-  left: 50px;
-  font-family: "Inter", Helvetica;
-  font-weight: 800;
-  color: #ffffff;
-  font-size: 20px;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-}
-  
-.load .overlap-wrapper {
-  position: absolute;
-  width: 547px;
-  height: 306px;
-  top: 743px;
-  left: 820px;
-}
-  
-.load .overlap-2 {
-  position: relative;
-  width: 543px;
-  height: 299px;
-}
-  
-.load .image {
-  width: 543px;
-  height: 281px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  object-fit: cover;
-}
-  
-.load .div-wrapper {
-  position: absolute;
-  width: 547px;
-  height: 306px;
-  top: 743px;
-  left: 140px;
-}
-  
-.load .group-2 {
-  position: absolute;
-  width: 547px;
-  height: 306px;
-  top: 359px;
-  left: 820px;
-}
-
-.overlap-group {
-  /* Pastikan elemen ini menunjukkan bahwa interaksi dimungkinkan */
+.workout-now-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  background-color: #FFD700;
+  color: #000;
+  font-weight: bold;
+  border-radius: 1000px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none;
+  text-align: center;
+  width: fit-content;
 }
 
-.overlap-group:hover {
-  /* Bisa ganti background atau sedikit transparansi untuk efek hover */
-  background-color: rgba(15,12,27,0.9);
+.workout-now-btn:hover {
+  background-color: #e6c200;
 }
 
-/* RESPONSIVE ADJUSTMENTS */
+/* Adaptive layout for Load section */
+.load {
+  background-color: #000000;
+  padding: 20px 0 60px;
+  width: 100%;
+}
+
+/* Hide original load style elements */
+.load .div,
+.load .tengah,
+.load .group,
+.load .overlap,
+.load .overlap-wrapper,
+.load .overlap-2,
+.load .div-wrapper,
+.load .group-2,
+.load .text-wrapper,
+.load .text-wrapper-2,
+.load .text-wrapper-3,
+.load .p,
+.load .overlap-group-wrapper,
+.load .overlap-group,
+.load .image {
+  display: none;
+}
+
+/* RESPONSIVE ADJUSTMENTS - Exact match */
 @media (max-width: 768px) {
   .search-and-filter {
-    flex-direction: column;
-    align-items: flex-start;
+      flex-direction: column;
+      align-items: flex-start;
   }
   
   .filter-bar {
-    margin-top: 15px;
+      margin-top: 15px;
+  }
+  
+  .workout-cards,
+  .load-cards {
+      grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .workout-header {
+      padding-top: 80px;
+  }
+  
+  .section-title {
+      font-size: 2rem;
+  }
+  
+  .card,
+  .program-card {
+      height: 200px;
   }
 }
