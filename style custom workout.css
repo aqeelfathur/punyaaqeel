@@ -327,12 +327,13 @@ nav {
 
 
 .load-btn {
+    font-family: 'Poppins',sans-serif;
     display: flex;
     padding: 10px 20px;
     border: none;
     background-color: #FFD700;
     color: #000;
-    font-weight: bold;
+    font-weight: 400;
     border-radius: 1000px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -355,41 +356,52 @@ nav {
 }
 
 .options-btn {
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     color: white;
-    transition: background-color 0.3s ease;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .options-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
+    transform: scale(1.05);
 }
 
 .options-menu {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 5px);
     right: 0;
-    background-color: #242424;
+    background-color: rgba(36, 36, 36, 0.95);
     border-radius: 8px;
-    width: 160px;
+    width: 180px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     display: none;
     z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 .options-menu.show {
     display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .option-item {
+    font-family: 'Poppins', sans-serif;
     padding: 12px 15px;
     width: 100%;
     text-align: left;
@@ -399,10 +411,18 @@ nav {
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.option-item .material-icons {
+    font-size: 18px;
 }
 
 .option-item:hover {
-    background-color: #333;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .option-item.delete {
@@ -410,7 +430,7 @@ nav {
 }
 
 .option-item.delete:hover {
-    background-color: rgba(255, 107, 107, 0.1);
+    background-color: rgba(255, 107, 107, 0.15);
 }
 
 
