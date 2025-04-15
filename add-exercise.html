@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack - Add Exercises</title>
+    <link rel="stylesheet" href="add-exercise.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">FIT TRACK</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Programs &#9662;</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="workout-programs.html">Workout Programs</a></li>
+                        <li><a href="#load">Load</a></li>
+                        <li><a href="#calendar">Calendar</a></li>
+                        <li><a href="custom workout.html">Custom</a></li>
+                    </ul>
+                </li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+            <a href="login.html"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="add-exercise-header" class="add-exercise-header">
+            <div class="container">
+                <h1 class="section-title">Add Exercises</h1>
+                <p class="section-subtitle">Build your workout program by adding exercises</p>
+            </div>
+        </section>
+
+        <section class="exercise-content-wrapper">
+            <div class="container">
+                <div class="exercise-content-grid">
+                    <!-- Left Side: Exercise Selection -->
+                    <div class="exercise-selection">
+                        <div class="search-and-filter">
+                            <div class="search-bar">
+                                <form action="">
+                                    <input type="text" id="search-exercises" placeholder="search">
+                                    <button type="submit"><span class="material-icons">search</span></button>
+                                </form>
+                            </div>
+                            
+                            <div class="filter-bar">
+                                <button class="filter-btn active">All</button>
+                                <button class="filter-btn">Body Weight</button>
+                                <button class="filter-btn">Tools Weight</button>
+                            </div>
+                        </div>
+
+                        <div class="exercise-grid">
+                            <!-- Exercise Cards -->
+                            <div class="exercise-card">
+                                <div class="exercise-image">
+                                    <img src="push up.jpg" alt="Push Up">
+                                    <div class="exercise-overlay">
+                                        <h3>Push Up</h3>
+                                        <p>25 × <span class="material-icons add-icon">add</span></p>
+                                        <button class="add-btn">Add Movement</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="exercise-card">
+                                <div class="exercise-image">
+                                    <img src="back up.webp" alt="Back Up">
+                                    <div class="exercise-overlay">
+                                        <h3>Back Up</h3>
+                                        <p>10 × <span class="material-icons add-icon">add</span></p>
+                                        <button class="add-btn">Add Movement</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="exercise-card">
+                                <div class="exercise-image">
+                                    <img src="sit up.jpg" alt="Sit Up">
+                                    <div class="exercise-overlay">
+                                        <h3>Sit Up</h3>
+                                        <p>15 × <span class="material-icons add-icon">add</span></p>
+                                        <button class="add-btn">Add Movement</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="exercise-card">
+                                <div class="exercise-image">
+                                    <img src="pull up.webp" alt="Pull Up">
+                                    <div class="exercise-overlay">
+                                        <h3>Pull Up</h3>
+                                        <p>12 × <span class="material-icons add-icon">add</span></p>
+                                        <button class="add-btn">Add Movement</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Selected Exercises -->
+                    <div class="selected-exercises">
+                        <div class="selected-exercises-header">
+                            <h2>Movements That You Choose</h2>
+                        </div>
+                        <div class="selected-exercises-list">
+                            <div class="selected-exercise-item">
+                                <span class="exercise-name">Push up</span>
+                                <div class="exercise-reps">
+                                    <span>20x</span>
+                                    <span class="material-icons add-icon">add</span>
+                                    <span class="material-icons delete-icon">delete</span>
+                                </div>
+                            </div>
+                            <div class="selected-exercise-item">
+                                <span class="exercise-name">Sit up</span>
+                                <div class="exercise-reps">
+                                    <span>20x</span>
+                                    <span class="material-icons add-icon">add</span>
+                                    <span class="material-icons delete-icon">delete</span>
+                                </div>
+                            </div>
+                            <div class="selected-exercise-item">
+                                <span class="exercise-name">Back up</span>
+                                <div class="exercise-reps">
+                                    <span>20x</span>
+                                    <span class="material-icons add-icon">add</span>
+                                    <span class="material-icons delete-icon">delete</span>
+                                </div>
+                            </div>
+                            <div class="selected-exercise-item">
+                                <span class="exercise-name">Pull up</span>
+                                <div class="exercise-reps">
+                                    <span>20x</span>
+                                    <span class="material-icons add-icon">add</span>
+                                    <span class="material-icons delete-icon">delete</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <a href="add-programs.html" class="cancel-btn">Back</a>
+                            <button type="button" class="next-btn" id="save-program">Add to Program</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add exercise functionality
+            const addButtons = document.querySelectorAll('.add-btn');
+            
+            addButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const card = e.target.closest('.exercise-card');
+                    const exerciseName = card.querySelector('h3').textContent;
+                    
+                    // Get existing exercises
+                    const exercisesList = document.querySelector('.selected-exercises-list');
+                    const exerciseExists = Array.from(exercisesList.querySelectorAll('.exercise-name'))
+                        .some(name => name.textContent === exerciseName);
+                    
+                    if (!exerciseExists) {
+                        // Create new exercise item
+                        const newExercise = document.createElement('div');
+                        newExercise.className = 'selected-exercise-item';
+                        newExercise.innerHTML = `
+                            <span class="exercise-name">${exerciseName}</span>
+                            <div class="exercise-reps">
+                                <span>20x</span>
+                                <span class="material-icons add-icon">add</span>
+                                <span class="material-icons delete-icon">delete</span>
+                            </div>
+                        `;
+                        
+                        // Add to selected exercises
+                        exercisesList.appendChild(newExercise);
+                        
+                        // Add delete functionality
+                        const deleteIcon = newExercise.querySelector('.delete-icon');
+                        deleteIcon.addEventListener('click', function() {
+                            newExercise.remove();
+                        });
+                    }
+                });
+            });
+            
+            // Handle existing delete icons
+            document.querySelectorAll('.delete-icon').forEach(icon => {
+                icon.addEventListener('click', function(e) {
+                    e.target.closest('.selected-exercise-item').remove();
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.getElementById('search-exercises');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const exerciseCards = document.querySelectorAll('.exercise-card');
+                
+                exerciseCards.forEach(card => {
+                    const exerciseName = card.querySelector('h3').textContent.toLowerCase();
+                    if (exerciseName.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Save program button
+            document.getElementById('save-program').addEventListener('click', function() {
+                // Get all selected exercises
+                const selectedExercises = Array.from(document.querySelectorAll('.selected-exercise-item'))
+                    .map(item => {
+                        return {
+                            name: item.querySelector('.exercise-name').textContent,
+                            reps: item.querySelector('.exercise-reps span').textContent
+                        };
+                    });
+                
+                // Store in localStorage for demo purposes
+                localStorage.setItem('programExercises', JSON.stringify(selectedExercises));
+                
+                // Navigate to program summary or back to programs page
+                window.location.href = 'custom workout.html';
+            });
+        });
+    </script>
+</body>
+</html>

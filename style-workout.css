@@ -225,8 +225,7 @@ nav {
 }
 
 .filter-btn.active {
-    background-color: #007BFF;
-    color: white;
+    background-color: #FFD700;
 }
 
 /* WORKOUT SECTION */
