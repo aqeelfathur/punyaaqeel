@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitTrack Calendar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-dasar-calender.css">
+  <link rel="stylesheet" href="style-calender.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo">FIT TRACK</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li class="dropdown">
+        <a href="#">Programs &#9662;</a>
+        <ul class="dropdown-menu">
+          <li><a href="workout-programs.html">Workout Programs</a></li>
+          <li><a href="load.html">Load</a></li>
+          <li><a href="calender.html">Calendar</a></li>
+          <li><a href="custom workout.html">Custom</a></li>
+        </ul>
+      </li>
+      <li><a href="#community">Community</a></li>
+      <li><a href="#about">About Us</a></li>
+    </ul>
+    <button class="sign-in">Sign in</button>
+  </nav>
+
+  <!-- Calendar Container -->
+  <div class="calendar-container">
+    <h1 class="calendar-title">Calendar</h1>
+    
+    <div class="calendar-wrapper">
+      <!-- Main Calendar -->
+      <div class="calendar-main">
+        <div class="calendar-header">
+          <button class="month-nav prev-month">&#8249;</button>
+          <div class="month-display">April 2025</div>
+          <button class="month-nav next-month">&#8250;</button>
+        </div>
+        
+        <!-- Calendar Days Header -->
+        <div class="calendar-grid">
+          <div class="calendar-day-header">Sun</div>
+          <div class="calendar-day-header">Mon</div>
+          <div class="calendar-day-header">Tue</div>
+          <div class="calendar-day-header">Wed</div>
+          <div class="calendar-day-header">Thu</div>
+          <div class="calendar-day-header">Fri</div>
+          <div class="calendar-day-header">Sat</div>
+          
+          <!-- Week 1 -->
+          <div class="calendar-day" data-date="">
+            <div class="day-number"></div>
+          </div>
+          <div class="calendar-day" data-date="">
+            <div class="day-number"></div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-01">
+            <div class="day-number">1</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-02">
+            <div class="day-number">2</div>
+          </div>
+          <div class="calendar-day has-workout active" data-date="2025-04-03">
+            <div class="day-number">3</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-04">
+            <div class="day-number">4</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-05">
+            <div class="day-number">5</div>
+          </div>
+          
+          <!-- Week 2 -->
+          <div class="calendar-day" data-date="2025-04-06">
+            <div class="day-number">6</div>
+          </div>
+          <div class="calendar-day has-workout" data-date="2025-04-07">
+            <div class="day-number">7</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-08">
+            <div class="day-number">8</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-09">
+            <div class="day-number">9</div>
+          </div>
+          <div class="calendar-day has-workout" data-date="2025-04-10">
+            <div class="day-number">10</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-11">
+            <div class="day-number">11</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-12">
+            <div class="day-number">12</div>
+          </div>
+          
+          <!-- Week 3 -->
+          <div class="calendar-day" data-date="2025-04-13">
+            <div class="day-number">13</div>
+          </div>
+          <div class="calendar-day has-workout" data-date="2025-04-14">
+            <div class="day-number">14</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-15">
+            <div class="day-number">15</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-16">
+            <div class="day-number">16</div>
+          </div>
+          <div class="calendar-day has-workout" data-date="2025-04-17">
+            <div class="day-number">17</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-18">
+            <div class="day-number">18</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-19">
+            <div class="day-number">19</div>
+          </div>
+          
+          <!-- Week 4 -->
+          <div class="calendar-day" data-date="2025-04-20">
+            <div class="day-number">20</div>
+          </div>
+          <div class="calendar-day has-workout" data-date="2025-04-21">
+            <div class="day-number">21</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-22">
+            <div class="day-number">22</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-23">
+            <div class="day-number">23</div>
+          </div>
+          <div class="calendar-day has-workout" data-date="2025-04-24">
+            <div class="day-number">24</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-25">
+            <div class="day-number">25</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-26">
+            <div class="day-number">26</div>
+          </div>
+          
+          <!-- Week 5 -->
+          <div class="calendar-day" data-date="2025-04-27">
+            <div class="day-number">27</div>
+          </div>
+          <div class="calendar-day has-workout" data-date="2025-04-28">
+            <div class="day-number">28</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-29">
+            <div class="day-number">29</div>
+          </div>
+          <div class="calendar-day" data-date="2025-04-30">
+            <div class="day-number">30</div>
+          </div>
+          <div class="calendar-day" data-date="">
+            <div class="day-number"></div>
+          </div>
+          <div class="calendar-day" data-date="">
+            <div class="day-number"></div>
+          </div>
+          <div class="calendar-day" data-date="">
+            <div class="day-number"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Workout Detail -->
+      <div class="workout-details">
+        <div class="workout-date">3 April 2025</div>
+        <div class="workout-list">
+          <div class="workout-item">
+            <div class="workout-title">Upper Program</div>
+            <div class="workout-description">Chest, Shoulders & Triceps</div>
+          </div>
+          <div class="workout-item">
+            <div class="workout-title">Lower Program</div>
+            <div class="workout-description">Quads, Hamstrings & Calves</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="calender.js"></script>
+</body>
+</html>
