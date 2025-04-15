@@ -1,0 +1,288 @@
+/* Calendar Styles */
+body {
+    background-color: #0f0c1b;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* NAVIGATION */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FFD700;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 70px;
+    list-style: none;
+  }
+  
+  .nav-links li {
+    display: inline;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    font-weight: 300;
+    color: white;
+    transition: 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #FFD700;
+  }
+  
+  .sign-in {
+    padding: 10px 20px;
+    border: none;
+    background: #ffffff;
+    color: #0a0a0a;
+    font-weight: 400;
+    border-radius: 1000px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .sign-in:hover {
+    background: #FFD700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  }
+  
+  /* DROPDOWN */
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #181717;
+    display: none;
+    width: 220px;
+    padding: 10px 0;
+    border-radius: 15px;
+    z-index: 10;
+    list-style: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dropdown-menu li {
+    padding: 10px 20px;
+  }
+  
+  .dropdown-menu li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+  }
+  
+  .dropdown-menu li:hover {
+    background: #333;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  /* Calendar Container */
+  .calendar-container {
+    max-width: 1200px;
+    margin: 100px auto 40px;
+    padding: 0 20px;
+  }
+  
+  .calendar-title {
+    font-size: 60px;
+    font-weight: 600;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  /* Calendar Layout */
+  .calendar-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+  }
+  
+  /* Main Calendar */
+  .calendar-main {
+    background: #1a172b;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  .calendar-header {
+    background: #252136;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .month-display {
+    font-size: 24px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .month-nav {
+    cursor: pointer;
+    font-size: 24px;
+    color: #FFD700;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: background 0.3s;
+  }
+  
+  .month-nav:hover {
+    background: rgba(255, 215, 0, 0.2);
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  .calendar-day-header {
+    padding: 15px 0;
+    text-align: center;
+    background: #252136;
+    font-weight: 500;
+  }
+  
+  .calendar-day {
+    height: 100px;
+    border: 1px solid #2a2541;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s;
+  }
+  
+  .calendar-day:hover {
+    background: #252136;
+  }
+  
+  .calendar-day.active {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid #FFD700;
+  }
+  
+  .calendar-day.has-workout::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #FFD700;
+    border-radius: 50%;
+    bottom: 8px;
+    right: 8px;
+  }
+  
+  .day-number {
+    font-size: 16px;
+  }
+  
+  /* Workout Details Panel */
+  .workout-details {
+    background: #1a172b;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  .workout-date {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #FFD700;
+  }
+  
+  .workout-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .workout-item {
+    background: #252136;
+    border-radius: 10px;
+    padding: 15px;
+    transition: transform 0.3s;
+  }
+  
+  .workout-item:hover {
+    transform: translateY(-3px);
+  }
+  
+  .workout-title {
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  
+  .workout-description {
+    font-size: 14px;
+    color: #aaa;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 992px) {
+    .calendar-wrapper {
+      grid-template-columns: 1fr;
+    }
+    
+    .calendar-day {
+      height: 80px;
+    }
+    
+    .calendar-title {
+      font-size: 40px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    nav {
+      padding: 15px 20px;
+    }
+    
+    .nav-links {
+      display: none;
+    }
+    
+    .calendar-title {
+      font-size: 32px;
+    }
+    
+    .calendar-day {
+      height: 60px;
+      padding: 5px;
+    }
+  }

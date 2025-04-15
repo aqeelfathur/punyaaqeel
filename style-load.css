@@ -1,6 +1,6 @@
-
 /* NAVIGATION BAR */
 nav {
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -141,11 +141,42 @@ nav {
   color: #333;
 }
 
+/* FILTER BAR - Added from workout-programs.css */
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.filter-btn {
+  font-family: 'Poppins', sans-serif;
+  padding: 10px 20px;
+  border: none;
+  background-color: #f4f4f4;
+  color: #333;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #ddd;
+}
+
+.filter-btn.active {
+  background-color: #007BFF;
+  color: white;
+}
+
 /*  HEADER SECTION  */
 .workout-header {
+  background-color: #0f0c1b; /* Match the background color */
   padding-top: 100px;
   padding-bottom: 20px;
   text-align: left;
+  margin-top: 0;
 }
 
 .section-title {
@@ -154,6 +185,7 @@ nav {
   font-style: italic;
   font-size: 2.5rem;
   margin-bottom: 20px;
+  color: #ffffff;
 }
 
 .search-and-filter {
@@ -171,7 +203,14 @@ nav {
   padding: 0 15px;
 }
 
-
+/* FIX: Ensuring no white space appears */
+body {
+  background-color: #0f0c1b;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  min-height: 100vh;
+}
 
 .load {
   background-color: #0f0c1b;
@@ -179,6 +218,8 @@ nav {
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  margin-top: 0;
+  padding-top: 0;
 }
   
 .load .div {
@@ -332,3 +373,14 @@ nav {
   background-color: rgba(15,12,27,0.9);
 }
 
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px) {
+  .search-and-filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filter-bar {
+    margin-top: 15px;
+  }
+}
