@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack - Add Program</title>
+    <link rel="stylesheet" href="edit-programs.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">FIT TRACK</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Programs &#9662;</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="workout-programs.html">Workout Programs</a></li>
+                        <li><a href="#load">Load</a></li>
+                        <li><a href="#calendar">Calendar</a></li>
+                        <li><a href="custom workout.html">Custom</a></li>
+                    </ul>
+                </li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+            <a href="login.html"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="add-program-header" class="add-program-header">
+            <div class="container">
+                <h1 class="section-title">Edit Program</h1>
+                <p class="section-subtitle">Design your custom workout program</p>
+            </div>
+        </section>
+
+        <section class="add-program-form">
+            <div class="container">
+                <form id="program-form">
+                    <div class="form-container">
+                        <div class="form-left">
+                            <div class="image-upload">
+                                <div class="upload-preview" id="image-preview">
+                                    <span class="material-icons upload-icon">add_photo_alternate</span>
+                                    <p>Upload Program Image</p>
+                                </div>
+                                <input type="file" id="program-image" accept="image/*" class="hidden-input">
+                            </div>
+                        </div>
+                        
+                        <div class="form-right">
+                            <div class="form-group">
+                                <label for="program-title">Program Title</label>
+                                <input type="text" id="program-title" name="program-title" placeholder="Enter program title" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="program-category">Category</label>
+                                <select id="program-category" name="program-category" required>
+                                    <option value="" disabled selected>Select category</option>
+                                    <option value="body-weight">Body Weight</option>
+                                    <option value="tools-weight">Tools Weight</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="program-description">Description</label>
+                                <textarea id="program-description" name="program-description" placeholder="Describe your workout program" rows="4" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <a href="custom workout.html" class="cancel-btn">Cancel</a>
+                        <button type="button" id="save-avatar-btn" class="next-btn">Save Avatar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Image upload preview
+        const imagePreview = document.getElementById('image-preview');
+        const imageInput = document.getElementById('program-image');
+        
+        imagePreview.addEventListener('click', function() {
+            imageInput.click();
+        });
+        
+        imageInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.innerHTML = '';
+                    imagePreview.style.backgroundImage = `url(${e.target.result})`;
+                    imagePreview.classList.add('has-image');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Save Avatar button click handler
+        document.getElementById('save-avatar-btn').addEventListener('click', function() {
+            // Validate the form
+            const form = document.getElementById('program-form');
+            if (!form.checkValidity()) {
+                // Trigger form validation
+                const submitEvent = new Event('submit', {
+                    'bubbles': true,
+                    'cancelable': true
+                });
+                form.dispatchEvent(submitEvent);
+                return;
+            }
+            
+            // Save program details to localStorage if needed
+            const programTitle = document.getElementById('program-title').value;
+            const programCategory = document.getElementById('program-category').value;
+            const programDescription = document.getElementById('program-description').value;
+            
+            if (programTitle) {
+                localStorage.setItem('programTitle', programTitle);
+                localStorage.setItem('programCategory', programCategory);
+                localStorage.setItem('programDescription', programDescription);
+                
+                // Save image if one was uploaded
+                if (imagePreview.classList.contains('has-image')) {
+                    const imageData = imagePreview.style.backgroundImage;
+                    localStorage.setItem('programImage', imageData);
+                }
+            }
+            
+            // Redirect back to the custom workout page
+            window.location.href = 'custom workout.html';
+        });
+    });
+    </script>
+</body>
+</html>
