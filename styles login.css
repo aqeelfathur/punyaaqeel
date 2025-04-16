@@ -78,6 +78,7 @@
             justify-content:center;
         }
         .back-btn, .login-btn {
+            font-size: 15px;
             font-family: 'Poppins', sans-serif;
             padding: 10px 145px;
             border: none;
@@ -90,10 +91,12 @@
             transition: box-shadow 0.3s ease-in-out;
         }
         .back-btn {
+            
             background: #888;
             color: white;
             transition: box-shadow 0.3s ease-in-out;
-            
+            text-decoration: none;
+            font-weight: bold;
         }
         
 
