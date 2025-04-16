@@ -11,7 +11,7 @@
     <div class="background-blur"></div>
     <div class="login-container">
         <h2>Login to FitTrack</h2>
-        <form action="submit.php" method="POST">
+        <form id="loginForm">
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" placeholder="Enter your username">
@@ -19,7 +19,7 @@
             
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="text" id="password" placeholder="Enter your password">
+                <input type="password" id="password" placeholder="Enter your password">
             </div>
             
             <div>
@@ -32,5 +32,22 @@
             </div>
         </form>
     </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === "admin" && password === "admin") {
+                window.location.href = "bootstrap.html";
+            } else {
+                alert("Username atau password salah! Silakan coba lagi.");
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack Admin Dashboard</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">FitTrack</div>
+            <div style="font-size: 0.8rem; color: #aaa;">Admin Panel</div>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="active">
+                <a href="dashboard.html">
+                    <i class="material-icons">dashboard</i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="manage-users.html">
+                    <i class="material-icons">people</i>
+                    <span>Kelola Pengguna</span>
+                </a>
+            </li>
+            <li>
+                <a href="manage-programs.html">
+                    <i class="material-icons">fitness_center</i>
+                    <span>Kelola Program</span>
+                </a>
+            </li>
+            <li>
+                <a href="manage-community.html">
+                    <i class="material-icons">forum</i>
+                    <span>Kelola Komunitas</span>
+                </a>
+            </li>
+            <li>
+                <a href="reports.html">
+                    <i class="material-icons">bar_chart</i>
+                    <span>Laporan</span>
+                </a>
+            </li>
+            <li>
+                <a href="settings.html">
+                    <i class="material-icons">settings</i>
+                    <span>Pengaturan</span>
+                </a>
+            </li>
+            <li>
+                <a href="login.html">
+                    <i class="material-icons">logout</i>
+                    <span>Keluar</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1 class="page-title">Dashboard</h1>
+            <div class="user-info">
+                <div class="user-name">Admin</div>
+                <div class="user-avatar">
+                    <i class="material-icons">person</i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="dashboard-cards">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="material-icons">people</i>
+                </div>
+                <div class="card-title">Total Pengguna</div>
+                <div class="card-value">1,234</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="material-icons">fitness_center</i>
+                </div>
+                <div class="card-title">Program Latihan</div>
+                <div class="card-value">58</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="material-icons">forum</i>
+                </div>
+                <div class="card-title">Posting Komunitas</div>
+                <div class="card-value">325</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="material-icons">event_available</i>
+                </div>
+                <div class="card-title">Workout Hari Ini</div>
+                <div class="card-value">92</div>
+            </div>
+        </div>
+
+        <!-- Recent Users -->
+        <div class="recent-section">
+            <div class="section-header">
+                <h2 class="section-title">Pengguna Terbaru</h2>
+                <button class="view-all">Lihat Semua</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Tanggal Bergabung</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Budi Santoso</td>
+                        <td>budi@example.com</td>
+                        <td>12 Apr 2025</td>
+                        <td><span class="status active">Aktif</span></td>
+                        <td>
+                            <button class="action-btn"><i class="material-icons">edit</i></button>
+                            <button class="action-btn"><i class="material-icons">delete</i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Siti Rahma</td>
+                        <td>siti@example.com</td>
+                        <td>10 Apr 2025</td>
+                        <td><span class="status active">Aktif</span></td>
+                        <td>
+                            <button class="action-btn"><i class="material-icons">edit</i></button>
+                            <button class="action-btn"><i class="material-icons">delete</i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Deni Cahyadi</td>
+                        <td>deni@example.com</td>
+                        <td>9 Apr 2025</td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td>
+                            <button class="action-btn"><i class="material-icons">edit</i></button>
+                            <button class="action-btn"><i class="material-icons">delete</i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Recent Workouts -->
+        <div class="recent-section">
+            <div class="section-header">
+                <h2 class="section-title">Program Latihan Terbaru</h2>
+                <button class="view-all">Lihat Semua</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama Program</th>
+                        <th>Kategori</th>
+                        <th>Tanggal Dibuat</th>
+                        <th>Creator</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Full Body Workout</td>
+                        <td>Umum</td>
+                        <td>15 Apr 2025</td>
+                        <td>Admin</td>
+                        <td>
+                            <button class="action-btn"><i class="material-icons">edit</i></button>
+                            <button class="action-btn"><i class="material-icons">delete</i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chest Day Challenge</td>
+                        <td>Chest</td>
+                        <td>14 Apr 2025</td>
+                        <td>Admin</td>
+                        <td>
+                            <button class="action-btn"><i class="material-icons">edit</i></button>
+                            <button class="action-btn"><i class="material-icons">delete</i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Abs Workout</td>
+                        <td>Abs</td>
+                        <td>12 Apr 2025</td>
+                        <td>Admin</td>
+                        <td>
+                            <button class="action-btn"><i class="material-icons">edit</i></button>
+                            <button class="action-btn"><i class="material-icons">delete</i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
