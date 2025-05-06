@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack</title>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">FIT TRACK</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Programs &#9662;</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="workout-programs.html">Workout Programs</a></li>
+                        <li><a href="load.html">Load</a></li>
+                        <li><a href="calender.html">Calendar</a></li>
+                        <li><a href="custom workout.html">Custom</a></li>
+                    </ul>
+                </li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="about us.html">About Us</a></li>
+            </ul>
+            <a href="/login"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
+        </nav>
+    </header>
+    
+    <section id="home" class="section hero">
+            <h1>Fit Your Muscles<br> with FitTrack</h1>
+            <a href="/register"><button class="cta">Get Started</button></a>
+    </section>
+
+    <div class="content">
+        <ul>
+            Why Choose Us?
+        </ul>
+        <div class="content-wrap">
+            <img src="content1.webp" alt="bicep curl">
+            <div class="content-text">
+                <h2>LOT OF PROGRAMS</h2>
+                <p>
+                    Not sure where to start? FitTrack offers a variety of workout programs designed by experts, catering to all fitness levels—from beginners to professionals. Find the perfect plan to build muscle, lose weight, or boost endurance.
+                </p>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="content">
+        <div class="content-wrap">
+            <img src="content1.webp" alt="Deskripsi Gambar">
+            <div class="content-text">
+                <h2>TRACK YOUR PROGRESS</h2>
+                <p>
+                    Keep track of every rep, set, and strength gain with our progress tracker. Visualize your improvement through easy-to-read charts and stay motivated to reach your fitness goals.
+    
+                </p>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="content">
+        <div class="content-wrap">
+            <img src="content1.webp" alt="Deskripsi Gambar">
+            <div class="content-text">
+                <h2>SHARE WITH COMMUNITY</h2>
+                <p>
+                    Join a supportive fitness community! Share your experiences, exchange tips, and even create your own workout plans for others to follow. Together, we grow stronger!            </p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

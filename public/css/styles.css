@@ -1,0 +1,243 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    background-image: url(background_login.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    backdrop-filter: blur(20px); 
+    
+}
+
+
+@keyframes appear {
+    from {
+        opacity : 0;
+        transform: translateX(-100px)
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px)
+    }
+}
+
+/* Dashboard */
+nav {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top:  10px;
+    padding-bottom: 10px;
+    background: rgb(0, 0, 0); 
+    backdrop-filter: blur(10px);
+    width: 100%;
+    box-shadow: 0px 30px 30px #000000;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FFD700;
+    margin-left: 20px;
+    
+}
+.nav-links {
+    padding: 0;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300; 
+    justify-content: center;
+    display: flex;
+    gap: 70px;
+}
+
+
+.nav-links li {
+    display: inline;
+}
+.nav-links a {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: white;
+    transition: 0.3s;
+    
+
+    
+}
+
+.nav-links a:hover {
+    color:  rgba(197, 197, 197, 0.7); 
+}
+
+
+.sign-in {
+    font-family: 'Poppins', sans-serif;
+    margin-right: 20px;
+    padding: 10px 20px;
+    border: none;
+    background: #ffffff;
+    color: #0a0a0a;
+    font-weight: 400;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.5);
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 1000px;
+}
+
+.sign-in:hover {
+    box-shadow: 40px 0px 100px #ffd900a7, -40px 0px 100px #f7eaa5a7;
+}
+
+
+
+
+
+
+/* Tengah */
+.hero {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    font-size: 2rem;
+    z-index: -1;
+
+    
+
+}
+.cta {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 0   px;
+    padding: 15px 20px;
+    background: #FFD700;
+    color: black;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 80px rgba(255, 215, 0, 0.5);
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 1000px;
+
+}
+
+.cta:hover {
+    box-shadow: 40px 0px 100px #ffd900a7, -40px 0px 100px #f7eaa5a7;
+}
+
+
+
+.content {
+    
+    min-height: 90vh; 
+    padding: 10px;
+    background: #000000; 
+    font-family: 'Poppins', sans-serif;
+    
+    box-shadow: 0px -30px 30px #000000;
+}
+
+.content ul{
+    margin-top: 10vh;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 4rem;
+}
+.content-wrap{
+    margin-top: 10px;
+    font-weight: 300;
+    display: flex;
+    flex-direction: row;  
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    text-align: left;
+    font-size: 1.5rem;
+    gap: 30px; 
+    background: #000000; 
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
+.content img {
+    max-width: 40%;  
+    max-height: 60%;
+    border-radius: 80px;
+}
+
+.content-text {
+    max-width: 30%;
+}
+
+.content-text h2 {
+    margin-bottom: 5px; 
+}
+
+.content-text p {
+    margin-top: 0; 
+}
+
+/*dropdown*/
+.dropdown {
+    position: relative; 
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: #181717;
+    display: none;
+    width: 250px;
+    padding: 0;
+    border-radius: 3px;
+    z-index: 10;
+    list-style: none; 
+    margin: 0;
+    border-radius: 40px;
+}
+
+
+.dropdown-menu li {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.dropdown-menu li:hover {
+    background: #333;
+    padding: 0px;
+    list-style: none;
+}
+
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}

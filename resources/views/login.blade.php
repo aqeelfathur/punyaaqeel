@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ asset('css/styleslogin.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="background-blur"></div>
+    <div class="login-container">
+        <h2>Login to FitTrack</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            
+            <div>
+                <span>Dont have account?</span>
+                <a href="/register" class="register-text">Sign Up</a>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="login-btn">Login</button>
+                <a href="/" class="back-btn">Back</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.getElementById('loginForm');
+            
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                if (username === "admin" && password === "admin") {
+                    window.location.href = "dashboard-admin.html"; // disarankan tanpa spasi
+                } else {
+                    alert("Username atau password salah! Silakan coba lagi.");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
