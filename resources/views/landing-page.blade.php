@@ -6,6 +6,9 @@
     <title>FitTrack</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <style>
+       
+    </style>
 </head>
 <body>
     <header>
@@ -25,13 +28,33 @@
                 <li><a href="community">Community</a></li>
                 <li><a href="about-us">About Us</a></li>
             </ul>
-            <a href="/login"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
+            
+            @auth
+                <div class="user-dropdown">
+                    <button class="user-button">{{ Auth::user()->username }}</button>
+                    <div class="user-dropdown-menu">
+                        <a href="/profile">Profile</a>
+                        <a href="/settings">Settings</a>
+                        <a href="{{ route('logout') }}" 
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+            @else
+                <a href="/login"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
+            @endauth
         </nav>
     </header>
     
     <section id="home" class="section hero">
             <h1>Fit Your Muscles<br> with FitTrack</h1>
-            <a href="/register"><button class="cta">Get Started</button></a>
+            @guest
+                <a href="/register"><button class="cta">Get Started</button></a>
+            @endguest
     </section>
 
     <div class="content">
@@ -73,7 +96,6 @@
                     Join a supportive fitness community! Share your experiences, exchange tips, and even create your own workout plans for others to follow. Together, we grow stronger!            </p>
             </div>
         </div>
-
     </div>
 </body>
 </html>

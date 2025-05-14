@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FIT TRACK - Community</title>
-    <link rel="stylesheet" href="comunnity.css">
+    <link rel="stylesheet" href="{{ asset('css/stylescommunity.css') }}">
   </head>
   <body>
     <header>
@@ -24,7 +24,24 @@
                 <li><a href="community">Community</a></li>
                 <li><a href="about-us">About Us</a></li>
             </ul>
-            <a href="/login"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
+            @auth
+                <div class="user-dropdown">
+                    <button class="user-button">{{ Auth::user()->username }}</button>
+                    <div class="user-dropdown-menu">
+                        <a href="/profile">Profile</a>
+                        <a href="/settings">Settings</a>
+                        <a href="{{ route('logout') }}" 
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+            @else
+                <a href="/login"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
+            @endauth
         </nav>
     </header>
     

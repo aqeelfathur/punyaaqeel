@@ -11,65 +11,38 @@
     <div class="background-blur"></div>
     <div class="login-container">
         <h3>Register to FitTrack</h3>
-        <form action="submit.php" method="POST">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Enter your username">
-            </div>
-            
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="text" id="password" placeholder="Enter your password">
-            </div>
-            
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="text" id="email" placeholder="Enter your email">
-            </div>
+        <form action="{{ route('register') }}" method="POST">
+        @csrf
 
-            <div class="input-group">
-                <label for="Phone number">Phone number</label>
-                <input type="text" id="phonenumber" placeholder="Enter your phone number">
-            </div>
-            
-            <div>
-                <span>Have an account?</span>
-                <a href="/login" class="register-text">Login</a>
-            </div>
-            <div class="button-group">
-                <button type="submit" class="login-btn">Daftar</button>
-                <a href="/" class="back-btn">Back</a>
-            </div>
-        </form>
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" value="{{ old('username') }}">
+            @error('username') <small style="color:red;">{{ $message }}</small> @enderror
+        </div>
+
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" name="password">
+            @error('password') <small style="color:red;">{{ $message }}</small> @enderror
+        </div>
+
+        <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" value="{{ old('email') }}">
+            @error('email') <small style="color:red;">{{ $message }}</small> @enderror
+        </div>
+
+        <div class="input-group">
+            <label for="phonenumber">Phone number</label>
+            <input type="text" name="phonenumber" value="{{ old('phonenumber') }}">
+            @error('phonenumber') <small style="color:red;">{{ $message }}</small> @enderror
+        </div>
+
+        <button type="submit" class="login-btn">Daftar</button>
+    </form>
+
+
     </div>
-    </script>
-            document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            let username = document.getElementById("username").value.trim();
-            let password = document.getElementById("password").value.trim();
-            let userError = document.getElementById("userError");
-            let passError = document.getElementById("passError");
-            
-            userError.textContent = "";
-            passError.textContent = "";
-            
-            if (username === "") {
-                userError.textContent = "Username cannot be empty!";
-                return;
-            }
-            if (password === "") {
-                passError.textContent = "Password cannot be empty!";
-                return;
-            }
-            
-            if (username === "admin" && password === "1234") {
-                alert("Login successful!");
-                window.location.href = "dashboard.html";
-            } else {
-                alert("Invalid username or password");
-            }
-        });
-    </script>
+    
 </body>
 </html>

@@ -61,3 +61,21 @@ Route::get('/add-exercises', function () {
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->name('dashboard');
+
+
+use App\Http\Controllers\Auth\RegisterController;
+
+// Routes untuk registrasi
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+
+use App\Http\Controllers\Auth\LoginController;
+// Routes untuk login
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Profile routes
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
+Route::get('/settings', [App\Http\Controllers\ProfileController::class, 'settings'])->name('settings');
+Route::put('/settings', [App\Http\Controllers\ProfileController::class, 'updateSettings'])->name('settings.update');
