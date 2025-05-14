@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack</title>
+    <link rel="stylesheet" href="{{ asset('css/stylescustomworkout.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">FIT TRACK</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Programs &#9662;</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="workout-programs.html">Workout Programs</a></li>
+                        <li><a href="load.html">Load</a></li>
+                        <li><a href="calender.html">Calendar</a></li>
+                        <li><a href="custom workout.html">Custom</a></li>
+                    </ul>
+                </li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="about us.html">About Us</a></li>
+            </ul>
+            <a href="login.html"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="workout-header" class="workout-header">
+            <div class="container">
+                <h1 class="section-title">Custom Your Programs!</h1>
+                
+                <div class="search-and-filter">
+                    <div class="search-bar">
+                        <form action="">
+                            <input type="text" placeholder="search">
+                            <button type="submit"><span class="material-icons">search</span></button>
+                        </form>
+                    </div>
+
+                    <div class="add-bar">
+                        <a href="add programs.html" class="add-btn">Add Programs</a>
+                    </div>
+                    
+                    
+                    <div class="filter-bar">
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">Body Weight</button>
+                        <button class="filter-btn">Tools Weight</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+      
+        <section class="workout-section">
+            <div class="container">
+                <div class="workout-cards">
+                    <!-- Card 1 -->
+                    <div class="card" data-category="body-weight">
+                        <img src="image-card.webp" alt="Upper Programs">
+                        <div class="card-options">
+                            <button class="options-btn" aria-label="More options">
+                                <span class="material-icons">more_vert</span>
+                            </button>
+                            <div class="options-menu">
+                                <a href="edit-programs.html" class="option-item">
+                                    <span class="material-icons">image</span>
+                                    Edit Avatar
+                                </a>
+                                <a href="edit-exercise.html" class="option-item">
+                                    <span class="material-icons">fitness_center</span>
+                                    Edit Movement
+                                </a>
+                                <button class="option-item delete">
+                                    <span class="material-icons">delete</span>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Program buat pagi hari</h3>
+                            <p>Target the arms, shoulders, chest, and upper back while increasing lean muscle mass, reducing body fat</p>
+                            <button class="load-btn">Add to Load</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card" data-category="tools-weight">
+                        <img src="image-card.webp" alt="Upper Programs">
+                        <div class="card-options">
+                            <button class="options-btn" aria-label="More options">
+                                <span class="material-icons">more_vert</span>
+                            </button>
+                            <div class="options-menu">
+                                <a href="edit-programs.html" class="option-item">
+                                    <span class="material-icons">image</span>
+                                    Edit Avatar
+                                </a>
+                                <a href="edit-exercise.html" class="option-item">
+                                    <span class="material-icons">fitness_center</span>
+                                    Edit Movement
+                                </a>
+                                <button class="option-item delete">
+                                    <span class="material-icons">delete</span>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Siang HIIT</h3>
+                            <p>Full body workout using dumbbells for strength training</p>
+                            <button class="load-btn">Add to Load</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card" data-category="body-weight">
+                        <img src="image-card.webp" alt="Upper Programs">
+                        <div class="card-options">
+                            <button class="options-btn" aria-label="More options">
+                                <span class="material-icons">more_vert</span>
+                            </button>
+                            <div class="options-menu">
+                                <a href="edit-programs.html" class="option-item">
+                                    <span class="material-icons">image</span>
+                                    Edit Avatar
+                                </a>
+                                <a href="edit-exercise.html" class="option-item">
+                                    <span class="material-icons">fitness_center</span>
+                                    Edit Movement
+                                </a>
+                                <button class="option-item delete">
+                                    <span class="material-icons">delete</span>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Calisthenics</h3>
+                            <p>Body weight exercises for functional strength</p>
+                            <button class="load-btn">Add to Load</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.textContent.toLowerCase().replace(' ', '-');
+                    
+                    // Filter cards
+                    cards.forEach(card => {
+                        if (filterValue === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            if (card.dataset.category === filterValue) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+
+            // Options menu functionality
+            const optionsBtns = document.querySelectorAll('.options-btn');
+            
+            optionsBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent event from bubbling up
+                    
+                    // Close all other open menus first
+                    document.querySelectorAll('.options-menu').forEach(menu => {
+                        if (menu !== this.nextElementSibling) {
+                            menu.classList.remove('show');
+                        }
+                    });
+                    
+                    // Toggle the clicked menu
+                    this.nextElementSibling.classList.toggle('show');
+                });
+            });
+            
+            // Close menus when clicking outside
+            document.addEventListener('click', function() {
+                document.querySelectorAll('.options-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            });
+            
+            // Prevent closing when clicking inside menu
+            document.querySelectorAll('.options-menu').forEach(menu => {
+                menu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+            
+            // Handle option buttons click
+            document.querySelectorAll('.option-item').forEach(option => {
+                option.addEventListener('click', function() {
+                    const action = this.textContent;
+                    const card = this.closest('.card');
+                    const programName = card.querySelector('h3').textContent;
+                    
+                    if (action === "Delete") {
+                        if (confirm(`Are you sure you want to delete "${programName}"?`)) {
+                            card.remove();
+                        }
+                    } else if (action === "Edit Movement") {
+                        alert(`Edit movement for "${programName}"`);
+                        // Implement edit movement functionality here
+                    } else if (action === "Edit Avatar") {
+                        alert(`Edit avatar for "${programName}"`);
+                        // Implement edit avatar functionality here
+                    }
+                    
+                    // Close the menu after action
+                    this.closest('.options-menu').classList.remove('show');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

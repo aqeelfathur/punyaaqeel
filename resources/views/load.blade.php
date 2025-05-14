@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ asset('css/stylesload.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>FIT TRACK - Load Programs</title>
+  </head>
+  <body>
+    <!-- Header dengan Navbar  -->
+    <header>
+      <nav>
+        <div class="logo">FIT TRACK</div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li class="dropdown">
+            <a href="#">Programs &#9662;</a>
+            <ul class="dropdown-menu">
+              <li><a href="workout-programs.html">Workout Programs</a></li>
+              <li><a href="load.html">Load</a></li>
+              <li><a href="calender.html">Calendar</a></li>
+              <li><a href="custom workout.html">Custom</a></li>
+            </ul>
+          </li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="about us.html">About Us</a></li>
+        </ul>
+        <a href="login.html"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
+      </nav>
+    </header>
+    
+    <!-- Section search bar  -->
+    <section id="workout-header" class="workout-header">
+      <div class="container">
+        <h1 class="section-title">Load</h1>
+        <div class="search-and-filter">
+          <div class="search-bar">
+            <form action="">
+              <input type="text" placeholder="Search Program">
+              <button type="submit"><span class="material-icons">search</span></button>
+            </form>
+          </div>
+          
+          <!-- Filter bar  -->
+          <div class="filter-bar">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Body Weight</button>
+            <button class="filter-btn">Weights</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workout Section - Using exact same structure as workout-programs.html -->
+    <section class="workout-section">
+      <div class="container">
+        <div class="load-cards">
+          <!-- Upper Programs Card -->
+          <div class="card">
+            <img src="https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png" alt="Upper Programs">
+            <div class="card-content">
+              <h3>Upper Programs</h3>
+              <p>Target the arms, shoulders, chest, and upper back while increasing lean muscle mass, reducing body fat</p>
+              <a href="list.html" class="workout-now-btn">Workout Now</a>
+            </div>
+          </div>
+
+          <!-- Full Body Programs Card -->
+          <div class="card">
+            <img src="https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png" alt="Full Body Programs">
+            <div class="card-content">
+              <h3>Full Body Programs</h3>
+              <p>Complete full body workout targeting all major muscle groups for balanced development and fitness</p>
+              <a href="list.html" class="workout-now-btn">Workout Now</a>
+            </div>
+          </div>
+
+          <!-- Core Programs Card -->
+          <div class="card">
+            <img src="https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png" alt="Core Programs">
+            <div class="card-content">
+              <h3>Core Programs</h3>
+              <p>Develop core strength, stability, and endurance with targeted abdominal and lower back exercises</p>
+              <a href="list.html" class="workout-now-btn">Workout Now</a>
+            </div>
+          </div>
+
+          <!-- Lower Programs Card -->
+          <div class="card">
+            <img src="https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png" alt="Lower Programs">
+            <div class="card-content">
+              <h3>Lower Programs</h3>
+              <p>Target the legs, glutes, and lower body while increasing strength and improving overall fitness</p>
+              <a href="list.html" class="workout-now-btn">Workout Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keep the original load section hidden for now to ensure nothing breaks -->
+    <div class="load" style="display: none;">
+      <div class="div">
+        <div class="tengah">
+          <div class="text-wrapper">Load</div>
+        </div>
+        <div class="group">
+          <div class="overlap">
+            <div class="text-wrapper-2">Upper Programs</div>
+            <p class="p">
+              Target the arms, shoulders, chest, and upper back while increasing lean muscle mass, reducing body fat
+            </p>
+            <div class="overlap-group-wrapper">
+              <a href="list.html">
+                <div class="overlap-group">
+                  <div class="text-wrapper-3">Workout Now</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="overlap-wrapper">
+          <div class="overlap-2">
+            <img class="image" src="https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png" alt="Workout Image" />
+            <div class="text-wrapper-2">Lower Programs</div>
+            <p class="p">
+              Target the legs, glutes, and lower body while increasing strength and improving overall fitness
+            </p>
+            <div class="overlap-group-wrapper">
+              <a href="list.html">
+                <div class="overlap-group">
+                  <div class="text-wrapper-3">Workout Now</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="div-wrapper">
+          <div class="overlap-2">
+            <img class="image" src="https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png" alt="Workout Image" />
+            <div class="text-wrapper-2">Core Programs</div>
+            <p class="p">
+              Develop core strength, stability, and endurance with targeted abdominal and lower back exercises
+            </p>
+            <div class="overlap-group-wrapper">
+              <a href="list.html">
+                <div class="overlap-group">
+                  <div class="text-wrapper-3">Workout Now</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="group-2">
+          <div class="overlap">
+            <div class="text-wrapper-2">Full Body Programs</div>
+            <p class="p">
+              Complete full body workout targeting all major muscle groups for balanced development and fitness
+            </p>
+            <div class="overlap-group-wrapper">
+              <a href="list.html">
+                <div class="overlap-group">
+                  <div class="text-wrapper-3">Workout Now</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
