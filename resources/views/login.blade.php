@@ -44,7 +44,7 @@
                 const password = document.getElementById('password').value;
                 
                 if (username === "admin" && password === "admin") {
-                    window.location.href = "dashboard-admin.html"; // disarankan tanpa spasi
+                    window.location.href = "dashboard"; // disarankan tanpa spasi
                 } else {
                     alert("Username atau password salah! Silakan coba lagi.");
                 }

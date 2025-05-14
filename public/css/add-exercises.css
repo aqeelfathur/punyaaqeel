@@ -1,0 +1,483 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    backdrop-filter: blur(10px);
+}
+
+/* CONTAINER */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* NAVIGATION */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: rgb(0, 0, 0); 
+    backdrop-filter: blur(10px);
+    width: 100%;
+    box-shadow: 0px 30px 30px #000000;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FFD700;
+    margin-left: 20px;
+}
+
+.nav-links {
+    padding: 0;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300; 
+    justify-content: center;
+    display: flex;
+    gap: 70px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: white;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: rgba(197, 197, 197, 0.7); 
+}
+
+.sign-in {
+    font-family: 'Poppins', sans-serif;
+    margin-right: 20px;
+    padding: 10px 20px;
+    border: none;
+    background: #ffffff;
+    color: #0a0a0a;
+    font-weight: 400;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.5);
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 1000px;
+}
+
+.sign-in:hover {
+    box-shadow: 40px 0px 100px #ffd900a7, -40px 0px 100px #f7eaa5a7;
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: relative; 
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: #181717;
+    display: none;
+    width: 250px;
+    padding: 0;
+    border-radius: 3px;
+    z-index: 10;
+    list-style: none; 
+    margin: 0;
+    border-radius: 40px;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    border-bottom: 1px solid #ffffff1a;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.dropdown-menu li:hover {
+    background: #333;
+    padding: 0px;
+    list-style: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* ADD EXERCISE HEADER */
+.add-exercise-header {
+    padding-top: 120px;
+    padding-bottom: 20px;
+    text-align: left;
+}
+
+.section-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    margin-top: 0;
+    color: #aaa;
+    text-align: left;
+}
+
+/* EXERCISE CONTENT GRID - New layout for side-by-side view */
+.exercise-content-wrapper {
+    margin-bottom: 40px;
+}
+
+.exercise-content-grid {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 20px;
+}
+
+/* SEARCH AND FILTER */
+.search-and-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;    
+}
+
+/* SEARCH BAR */
+.search-bar form {
+    display: flex;
+    align-items: center;
+    background-color: rgb(244, 244, 244);
+    padding: 5px 15px;
+    border-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    font-size: 16px;
+    background-color: transparent;
+    color: #000;
+}
+
+.search-bar button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar .material-icons {
+    color: #333;
+}
+
+/* FILTER BAR */
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-start; 
+}
+
+.filter-btn {
+    font-family: 'Poppins', sans-serif;
+    padding: 10px 20px;
+    border: none;
+    background-color: #f4f4f4;
+    color: #333;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #ddd;
+}
+
+.filter-btn.active {
+    background-color: #FFD700;
+}
+
+/* LEFT SIDE - EXERCISE SELECTION */
+.exercise-selection {
+    padding-right: 10px;
+}
+
+/* EXERCISE GRID */
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.exercise-card {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #181818;
+    transition: transform 0.3s ease;
+}
+
+.exercise-card:hover {
+    transform: translateY(-5px);
+}
+
+.exercise-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.exercise-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.exercise-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+    text-align: left;
+}
+
+.exercise-overlay h3 {
+    margin: 0 0 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.exercise-overlay p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    color: #ddd;
+    font-size: 0.9rem;
+}
+
+.add-icon {
+    margin-left: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #FFD700;
+}
+
+.add-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 8px 15px;
+    background-color: #FFD700;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: #e6c200;
+    transform: translateY(-2px);
+}
+
+/* RIGHT SIDE - SELECTED EXERCISES SECTION */
+.selected-exercises {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.selected-exercises-header {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.selected-exercises-header h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.selected-exercises-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.selected-exercise-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #222;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.exercise-name {
+    font-size: 1rem;
+}
+
+.exercise-reps {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-icon {
+    color: #ff5252;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.delete-icon:hover {
+    transform: scale(1.2);
+}
+
+/* FORM ACTIONS */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.cancel-btn {
+    padding: 12px 24px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.next-btn {
+    padding: 12px 24px;
+    background-color: #FFD700;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.next-btn:hover {
+    background-color: #e6c200;
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 992px) {
+    .exercise-content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .selected-exercises {
+        position: static;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .exercise-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .search-and-filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-bar {
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .filter-bar {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .add-exercise-header {
+        padding-top: 100px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .cancel-btn, .next-btn {
+        width: 100%;
+    }
+    
+    .exercise-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitTrack - Add Exercises</title>
-    <link rel="stylesheet" href="{{ asset('css/styleseditexercise.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/add-exercises.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
@@ -34,8 +34,8 @@
     <main>
         <section id="add-exercise-header" class="add-exercise-header">
             <div class="container">
-                <h1 class="section-title">Edit Movements</h1>
-                <p class="section-subtitle">Customize your workout program with exercises</p>
+                <h1 class="section-title">Add Exercises</h1>
+                <p class="section-subtitle">Build your workout program by adding exercises</p>
             </div>
         </section>
 
@@ -46,8 +46,8 @@
                     <div class="exercise-selection">
                         <div class="search-and-filter">
                             <div class="search-bar">
-                                <form action="" onsubmit="return false;">
-                                    <input type="text" id="search-exercises" placeholder="Search exercises...">
+                                <form action="">
+                                    <input type="text" id="search-exercises" placeholder="search">
                                     <button type="submit"><span class="material-icons">search</span></button>
                                 </form>
                             </div>
@@ -62,7 +62,7 @@
                         <div class="exercise-grid">
                             <!-- Exercise Cards -->
                             <div class="exercise-card" data-category="body-weight">
-                                <div class="exercise-image">
+                                <div class="exercise-image" >
                                     <img src="push up.jpg" alt="Push Up">
                                     <div class="exercise-overlay">
                                         <h3>Push Up</h3>
@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="exercise-card" data-category="body-weight">
-                                <div class="exercise-image">
+                                <div class="exercise-image" >
                                     <img src="back up.webp" alt="Back Up">
                                     <div class="exercise-overlay">
                                         <h3>Back Up</h3>
@@ -110,14 +110,45 @@
                     <!-- Right Side: Selected Exercises -->
                     <div class="selected-exercises">
                         <div class="selected-exercises-header">
-                            <h2>Selected Movements</h2>
+                            <h2>Movements That You Choose</h2>
                         </div>
-                        <div class="selected-exercises-list" id="selected-exercises-list">
-                            <!-- Exercises will be added here dynamically -->
+                        <div class="selected-exercises-list">
+                            <div class="selected-exercise-item">
+                                <span class="exercise-name">Push up</span>
+                                <div class="exercise-reps">
+                                    <span>20x</span>
+                                    <span class="material-icons add-icon">add</span>
+                                    <span class="material-icons delete-icon">delete</span>
+                                </div>
+                            </div>
+                            <div class="selected-exercise-item">
+                                <span class="exercise-name">Sit up</span>
+                                <div class="exercise-reps">
+                                    <span>20x</span>
+                                    <span class="material-icons add-icon">add</span>
+                                    <span class="material-icons delete-icon">delete</span>
+                                </div>
+                            </div>
+                            <div class="selected-exercise-item">
+                                <span class="exercise-name">Back up</span>
+                                <div class="exercise-reps">
+                                    <span>20x</span>
+                                    <span class="material-icons add-icon">add</span>
+                                    <span class="material-icons delete-icon">delete</span>
+                                </div>
+                            </div>
+                            <div class="selected-exercise-item">
+                                <span class="exercise-name">Pull up</span>
+                                <div class="exercise-reps">
+                                    <span>20x</span>
+                                    <span class="material-icons add-icon">add</span>
+                                    <span class="material-icons delete-icon">delete</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-actions">
-                            <a href="custom workout.html" class="cancel-btn">Cancel</a>
-                            <button type="button" class="next-btn" id="save-program">Save Program</button>
+                            <a href="add-programs" class="cancel-btn">Back</a>
+                            <button type="button" class="next-btn" id="save-program">Add to Program</button>
                         </div>
                     </div>
                 </div>
@@ -127,80 +158,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Load previously saved program information
-            const programTitle = localStorage.getItem('programTitle') || 'My Program';
-            document.querySelector('.section-title').textContent = `Edit Movements: ${programTitle}`;
-            
-            // Load existing exercises if any
-            const savedExercises = JSON.parse(localStorage.getItem('programExercises')) || [];
-            const exercisesList = document.getElementById('selected-exercises-list');
-            
-            // Function to create exercise item
-            function createExerciseItem(name, reps) {
-                const newExercise = document.createElement('div');
-                newExercise.className = 'selected-exercise-item';
-                newExercise.innerHTML = `
-                    <span class="exercise-name">${name}</span>
-                    <div class="exercise-reps">
-                        <span>${reps || '20x'}</span>
-                        <button class="rep-button" aria-label="Decrease reps">
-                            <span class="material-icons remove-icon">remove</span>
-                        </button>
-                        <button class="rep-button" aria-label="Increase reps">
-                            <span class="material-icons add-icon">add</span>
-                        </button>
-                        <button class="delete-button" aria-label="Remove exercise">
-                            <span class="material-icons delete-icon">delete</span>
-                        </button>
-                    </div>
-                `;
-                
-                // Add delete functionality
-                const deleteIcon = newExercise.querySelector('.delete-icon');
-                deleteIcon.addEventListener('click', function() {
-                    newExercise.classList.add('removing');
-                    setTimeout(() => {
-                        newExercise.remove();
-                        updateSelectedCount();
-                    }, 300);
-                });
-                
-                // Add increment/decrement functionality
-                const addIcon = newExercise.querySelector('.add-icon');
-                const removeIcon = newExercise.querySelector('.remove-icon');
-                const repsSpan = newExercise.querySelector('.exercise-reps span');
-                
-                addIcon.addEventListener('click', function() {
-                    let reps = parseInt(repsSpan.textContent);
-                    repsSpan.textContent = `${reps + 5}x`;
-                    updateLocalStorage();
-                });
-                
-                removeIcon.addEventListener('click', function() {
-                    let reps = parseInt(repsSpan.textContent);
-                    if (reps > 5) {
-                        repsSpan.textContent = `${reps - 5}x`;
-                        updateLocalStorage();
-                    }
-                });
-                
-                return newExercise;
-            }
-            
-            // Load saved exercises if any
-            savedExercises.forEach(exercise => {
-                exercisesList.appendChild(createExerciseItem(exercise.name, exercise.reps));
-            });
-            
-            // Update selected count on load
-            updateSelectedCount();
-            
             // Add exercise functionality
             const addButtons = document.querySelectorAll('.add-btn');
             const filterBtns = document.querySelectorAll('.filter-btn');
             const cards = document.querySelectorAll('.exercise-card');
             
-            // Filter functionality
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
                     // Remove active class from all buttons
@@ -225,36 +187,45 @@
                 });
             });
 
-            // Add exercise to selected list
             addButtons.forEach(button => {
                 button.addEventListener('click', function(e) {
                     const card = e.target.closest('.exercise-card');
                     const exerciseName = card.querySelector('h3').textContent;
-                    const defaultReps = card.querySelector('p').textContent.split(' ×')[0] + 'x';
                     
-                    // Check if exercise already exists
+                    // Get existing exercises
+                    const exercisesList = document.querySelector('.selected-exercises-list');
                     const exerciseExists = Array.from(exercisesList.querySelectorAll('.exercise-name'))
                         .some(name => name.textContent === exerciseName);
                     
                     if (!exerciseExists) {
-                        // Add exercise with animation
-                        const newExercise = createExerciseItem(exerciseName, defaultReps);
-                        newExercise.classList.add('adding');
+                        // Create new exercise item
+                        const newExercise = document.createElement('div');
+                        newExercise.className = 'selected-exercise-item';
+                        newExercise.innerHTML = `
+                            <span class="exercise-name">${exerciseName}</span>
+                            <div class="exercise-reps">
+                                <span>20x</span>
+                                <span class="material-icons add-icon">add</span>
+                                <span class="material-icons delete-icon">delete</span>
+                            </div>
+                        `;
+                        
+                        // Add to selected exercises
                         exercisesList.appendChild(newExercise);
                         
-                        // Remove animation class after animation completes
-                        setTimeout(() => {
-                            newExercise.classList.remove('adding');
-                        }, 500);
-                        
-                        updateSelectedCount();
-                        updateLocalStorage();
-                        
-                        // Show confirmation
-                        showToast(`Added ${exerciseName}`);
-                    } else {
-                        showToast(`${exerciseName} is already in your program`);
+                        // Add delete functionality
+                        const deleteIcon = newExercise.querySelector('.delete-icon');
+                        deleteIcon.addEventListener('click', function() {
+                            newExercise.remove();
+                        });
                     }
+                });
+            });
+            
+            // Handle existing delete icons
+            document.querySelectorAll('.delete-icon').forEach(icon => {
+                icon.addEventListener('click', function(e) {
+                    e.target.closest('.selected-exercise-item').remove();
                 });
             });
             
@@ -276,33 +247,7 @@
             
             // Save program button
             document.getElementById('save-program').addEventListener('click', function() {
-                updateLocalStorage();
-                
-                // Show saving animation/feedback
-                const saveBtn = this;
-                saveBtn.textContent = "Saving...";
-                saveBtn.disabled = true;
-                
-                setTimeout(() => {
-                    saveBtn.textContent = "Saved!";
-                    setTimeout(() => {
-                        // Navigate to program summary or back to programs page
-                        window.location.href = 'custom workout.html';
-                    }, 500);
-                }, 800);
-            });
-            
-            // Helper function to update selected count
-            function updateSelectedCount() {
-                const count = exercisesList.querySelectorAll('.selected-exercise-item').length;
-                const subtitle = document.querySelector('.section-subtitle');
-                subtitle.textContent = count > 0 ? 
-                    `Your program has ${count} exercise${count !== 1 ? 's' : ''}` : 
-                    'Add exercises to your program';
-            }
-            
-            // Helper function to update localStorage
-            function updateLocalStorage() {
+                // Get all selected exercises
                 const selectedExercises = Array.from(document.querySelectorAll('.selected-exercise-item'))
                     .map(item => {
                         return {
@@ -311,28 +256,21 @@
                         };
                     });
                 
+                // Store in localStorage for demo purposes
                 localStorage.setItem('programExercises', JSON.stringify(selectedExercises));
-            }
-            
-            // Toast message helper
-            function showToast(message) {
-                // Create toast element if it doesn't exist
-                let toast = document.getElementById('toast-message');
-                if (!toast) {
-                    toast = document.createElement('div');
-                    toast.id = 'toast-message';
-                    document.body.appendChild(toast);
+                
+                // Navigate to program summary or back to programs page
+                window.location.href = 'customworkout';
+            });
+
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-icon')) {
+                    const repsSpan = e.target.parentElement.querySelector('span');
+                    let reps = parseInt(repsSpan.textContent);
+                    repsSpan.textContent = `${reps + 5}x`;
                 }
-                
-                // Update message and show
-                toast.textContent = message;
-                toast.classList.add('show');
-                
-                // Hide after delay
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 2000);
-            }
+            });
+
         });
     </script>
 </body>

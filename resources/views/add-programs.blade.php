@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitTrack - Add Program</title>
-    <link rel="stylesheet" href="{{ asset('css/styleseditprograms.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/add-programs.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
@@ -34,14 +34,14 @@
     <main>
         <section id="add-program-header" class="add-program-header">
             <div class="container">
-                <h1 class="section-title">Edit Program</h1>
+                <h1 class="section-title">Create New Program</h1>
                 <p class="section-subtitle">Design your custom workout program</p>
             </div>
         </section>
 
         <section class="add-program-form">
             <div class="container">
-                <form id="program-form">
+                <form id="program-form" action="add-exercises" method="GET">
                     <div class="form-container">
                         <div class="form-left">
                             <div class="image-upload">
@@ -76,8 +76,8 @@
                     </div>
                     
                     <div class="form-actions">
-                        <a href="custom workout.html" class="cancel-btn">Cancel</a>
-                        <button type="button" id="save-avatar-btn" class="next-btn">Save Avatar</button>
+                        <a href="customworkout" class="cancel-btn">Cancel</a>
+                        <button type="submit" class="next-btn">Next: Add Exercises</button>
                     </div>
                 </form>
             </div>
@@ -86,62 +86,38 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        // Image upload preview
-        const imagePreview = document.getElementById('image-preview');
-        const imageInput = document.getElementById('program-image');
-        
-        imagePreview.addEventListener('click', function() {
-            imageInput.click();
-        });
-        
-        imageInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.innerHTML = '';
-                    imagePreview.style.backgroundImage = `url(${e.target.result})`;
-                    imagePreview.classList.add('has-image');
+            // Image upload preview
+            const imagePreview = document.getElementById('image-preview');
+            const imageInput = document.getElementById('program-image');
+            
+            imagePreview.addEventListener('click', function() {
+                imageInput.click();
+            });
+            
+            imageInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.innerHTML = '';
+                        imagePreview.style.backgroundImage = `url(${e.target.result})`;
+                        imagePreview.classList.add('has-image');
+                    }
+                    reader.readAsDataURL(file);
                 }
-                reader.readAsDataURL(file);
-            }
-        });
-        
-        // Save Avatar button click handler
-        document.getElementById('save-avatar-btn').addEventListener('click', function() {
-            // Validate the form
-            const form = document.getElementById('program-form');
-            if (!form.checkValidity()) {
-                // Trigger form validation
-                const submitEvent = new Event('submit', {
-                    'bubbles': true,
-                    'cancelable': true
-                });
-                form.dispatchEvent(submitEvent);
-                return;
-            }
+            });
             
-            // Save program details to localStorage if needed
-            const programTitle = document.getElementById('program-title').value;
-            const programCategory = document.getElementById('program-category').value;
-            const programDescription = document.getElementById('program-description').value;
-            
-            if (programTitle) {
-                localStorage.setItem('programTitle', programTitle);
-                localStorage.setItem('programCategory', programCategory);
-                localStorage.setItem('programDescription', programDescription);
-                
-                // Save image if one was uploaded
-                if (imagePreview.classList.contains('has-image')) {
-                    const imageData = imagePreview.style.backgroundImage;
-                    localStorage.setItem('programImage', imageData);
+            // Form submission (for demo purposes)
+            document.getElementById('program-form').addEventListener('submit', function(e) {
+                // Normally you'd handle this with a proper server submission
+                // For now, we're just redirecting to the next page
+                const programTitle = document.getElementById('program-title').value;
+                if (programTitle) {
+                    localStorage.setItem('programTitle', programTitle);
                 }
-            }
-            
-            // Redirect back to the custom workout page
-            window.location.href = 'custom workout.html';
+                // Continue with regular form submission
+            });
         });
-    });
     </script>
 </body>
 </html>

@@ -1,0 +1,345 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    backdrop-filter: blur(10px);
+}
+
+/* CONTAINER */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* NAVIGATION */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: rgb(0, 0, 0); 
+    backdrop-filter: blur(10px);
+    width: 100%;
+    box-shadow: 0px 30px 30px #000000;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FFD700;
+    margin-left: 20px;
+}
+
+.nav-links {
+    padding: 0;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300; 
+    justify-content: center;
+    display: flex;
+    gap: 70px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: white;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: rgba(197, 197, 197, 0.7); 
+}
+
+.sign-in {
+    font-family: 'Poppins', sans-serif;
+    margin-right: 20px;
+    padding: 10px 20px;
+    border: none;
+    background: #ffffff;
+    color: #0a0a0a;
+    font-weight: 400;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.5);
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 1000px;
+}
+
+.sign-in:hover {
+    box-shadow: 40px 0px 100px #ffd900a7, -40px 0px 100px #f7eaa5a7;
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: relative; 
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: #181717;
+    display: none;
+    width: 250px;
+    padding: 0;
+    border-radius: 3px;
+    z-index: 10;
+    list-style: none; 
+    margin: 0;
+    border-radius: 40px;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    border-bottom: 1px solid #ffffff1a;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.dropdown-menu li:hover {
+    background: #333;
+    padding: 0px;
+    list-style: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* ADD PROGRAM HEADER */
+.add-program-header {
+    padding-top: 120px;
+    padding-bottom: 20px;
+    text-align: left;
+}
+
+.section-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    margin-top: 0;
+    color: #aaa;
+    text-align: left;
+}
+
+/* FORM STYLING */
+.add-program-form {
+    padding: 20px 0 60px;
+}
+
+.form-container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.form-left, .form-right {
+    flex: 1;
+}
+
+/* IMAGE UPLOAD */
+.image-upload {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.upload-preview {
+    width: 100%;
+    height: 300px;
+    background-color: #181818;
+    border: 2px dashed #444;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-size: cover;
+    background-position: center;
+}
+
+.upload-preview:hover {
+    border-color: #FFD700;
+    background-color: #222;
+}
+
+.upload-preview.has-image {
+    border: none;
+}
+
+.upload-preview.has-image .upload-icon,
+.upload-preview.has-image p {
+    display: none;
+}
+
+.upload-icon {
+    font-size: 48px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.upload-preview p {
+    margin: 0;
+    color: #777;
+}
+
+.hidden-input {
+    display: none;
+}
+
+/* FORM ELEMENTS */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #ddd;
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #222;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: #777;
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* FORM ACTIONS */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.cancel-btn {
+    padding: 12px 24px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.next-btn {
+    padding: 12px 24px;
+    background-color: #FFD700;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.next-btn:hover {
+    background-color: #e6c200;
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px) {
+    .form-container {
+        flex-direction: column;
+    }
+    
+    .form-left, .form-right {
+        width: 100%;
+    }
+    
+    .upload-preview {
+        height: 250px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .add-program-header {
+        padding-top: 100px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .cancel-btn, .next-btn {
+        width: 100%;
+    }
+}

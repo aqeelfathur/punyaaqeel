@@ -11,24 +11,24 @@
   <body>
     <!-- Header dengan Navbar  -->
     <header>
-      <nav>
-        <div class="logo">FIT TRACK</div>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li class="dropdown">
-            <a href="#">Programs &#9662;</a>
-            <ul class="dropdown-menu">
-              <li><a href="workout-programs.html">Workout Programs</a></li>
-              <li><a href="load.html">Load</a></li>
-              <li><a href="calender.html">Calendar</a></li>
-              <li><a href="custom workout.html">Custom</a></li>
+        <nav>
+            <div class="logo">FIT TRACK</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Programs &#9662;</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="workout-programs">Workout Programs</a></li>
+                        <li><a href="load">Load</a></li>
+                        <li><a href="calendar">Calendar</a></li>
+                        <li><a href="customworkout">Custom</a></li>
+                    </ul>
+                </li>
+                <li><a href="community">Community</a></li>
+                <li><a href="about-us">About Us</a></li>
             </ul>
-          </li>
-          <li><a href="community.html">Community</a></li>
-          <li><a href="about us.html">About Us</a></li>
-        </ul>
-        <a href="login.html"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
-      </nav>
+            <a href="/login"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
+        </nav>
     </header>
     
     <!-- Section search bar  -->
@@ -63,7 +63,7 @@
             <div class="card-content">
               <h3>Upper Programs</h3>
               <p>Target the arms, shoulders, chest, and upper back while increasing lean muscle mass, reducing body fat</p>
-              <a href="list.html" class="workout-now-btn">Workout Now</a>
+              <a href="list" class="workout-now-btn">Workout Now</a>
             </div>
           </div>
 
@@ -73,7 +73,7 @@
             <div class="card-content">
               <h3>Full Body Programs</h3>
               <p>Complete full body workout targeting all major muscle groups for balanced development and fitness</p>
-              <a href="list.html" class="workout-now-btn">Workout Now</a>
+              <a href="list" class="workout-now-btn">Workout Now</a>
             </div>
           </div>
 
@@ -83,7 +83,7 @@
             <div class="card-content">
               <h3>Core Programs</h3>
               <p>Develop core strength, stability, and endurance with targeted abdominal and lower back exercises</p>
-              <a href="list.html" class="workout-now-btn">Workout Now</a>
+              <a href="list" class="workout-now-btn">Workout Now</a>
             </div>
           </div>
 
@@ -93,7 +93,7 @@
             <div class="card-content">
               <h3>Lower Programs</h3>
               <p>Target the legs, glutes, and lower body while increasing strength and improving overall fitness</p>
-              <a href="list.html" class="workout-now-btn">Workout Now</a>
+              <a href="list" class="workout-now-btn">Workout Now</a>
             </div>
           </div>
         </div>
@@ -113,7 +113,7 @@
               Target the arms, shoulders, chest, and upper back while increasing lean muscle mass, reducing body fat
             </p>
             <div class="overlap-group-wrapper">
-              <a href="list.html">
+              <a href="list>
                 <div class="overlap-group">
                   <div class="text-wrapper-3">Workout Now</div>
                 </div>
@@ -129,7 +129,7 @@
               Target the legs, glutes, and lower body while increasing strength and improving overall fitness
             </p>
             <div class="overlap-group-wrapper">
-              <a href="list.html">
+              <a href="list">
                 <div class="overlap-group">
                   <div class="text-wrapper-3">Workout Now</div>
                 </div>
@@ -145,7 +145,7 @@
               Develop core strength, stability, and endurance with targeted abdominal and lower back exercises
             </p>
             <div class="overlap-group-wrapper">
-              <a href="list.html">
+              <a href="list">
                 <div class="overlap-group">
                   <div class="text-wrapper-3">Workout Now</div>
                 </div>
@@ -160,7 +160,7 @@
               Complete full body workout targeting all major muscle groups for balanced development and fitness
             </p>
             <div class="overlap-group-wrapper">
-              <a href="list.html">
+              <a href="list">
                 <div class="overlap-group">
                   <div class="text-wrapper-3">Workout Now</div>
                 </div>

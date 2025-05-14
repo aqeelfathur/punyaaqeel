@@ -15,20 +15,20 @@
         <nav>
             <div class="logo">FIT TRACK</div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li class="dropdown">
                     <a href="#">Programs &#9662;</a>
                     <ul class="dropdown-menu">
-                        <li><a href="workout-programs.html">Workout Programs</a></li>
-                        <li><a href="load.html">Load</a></li>
-                        <li><a href="calender.html">Calendar</a></li>
-                        <li><a href="custom workout.html">Custom</a></li>
+                        <li><a href="workout-programs">Workout Programs</a></li>
+                        <li><a href="load">Load</a></li>
+                        <li><a href="calendar">Calendar</a></li>
+                        <li><a href="customworkout">Custom</a></li>
                     </ul>
                 </li>
-                <li><a href="community.html">Community</a></li>
-                <li><a href="about us.html">About Us</a></li>
+                <li><a href="community">Community</a></li>
+                <li><a href="about-us">About Us</a></li>
             </ul>
-            <a href="login.html"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
+            <a href="/login"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
         </nav>
     </header>
 
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="add-bar">
-                        <a href="add programs.html" class="add-btn">Add Programs</a>
+                        <a href="add-programs" class="add-btn">Add Programs</a>
                     </div>
                     
                     
