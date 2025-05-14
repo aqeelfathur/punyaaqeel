@@ -57,7 +57,7 @@
                 <div class="workout-cards">
                     <!-- Card 1 -->
                     <div class="card" data-category="body-weight">
-                        <img src="image-card.webp" alt="Upper Programs">
+                        <img src="{{ asset('assets/imagesprograms.jpeg') }}" alt="Upper Programs">
                         <div class="card-content">
                             <h3>Upper Programs</h3>
                             <p>Target the arms, shoulders, chest, and upper back while increasing lean muscle mass, reducing body fat</p>
@@ -67,7 +67,7 @@
 
                     <!-- Card 2 -->
                     <div class="card" data-category="tools-weight">
-                        <img src="image-card.webp" alt="Upper Programs">
+                        <img src="{{ asset('assets/imagesprograms.jpeg') }}" alt="Upper Programs">
                         <div class="card-content">
                             <h3>Dumbbell Workout</h3>
                             <p>Full body workout using dumbbells for strength training</p>
@@ -77,7 +77,7 @@
 
                     <!-- Card 3 -->
                     <div class="card" data-category="body-weight">
-                        <img src="image-card.webp" alt="Upper Programs">
+                        <img src="{{ asset('assets/imagesprograms.jpeg') }}" alt="Upper Programs">
                         <div class="card-content">
                             <h3>Calisthenics</h3>
                             <p>Body weight exercises for functional strength</p>

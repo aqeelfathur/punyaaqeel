@@ -64,7 +64,7 @@
                 <div class="workout-cards">
                     <!-- Card 1 -->
                     <div class="card" data-category="body-weight">
-                        <img src="image-card.webp" alt="Upper Programs">
+                        <img src="{{ asset('assets/image-card.webp') }}" alt="Upper Programs">
                         <div class="card-options">
                             <button class="options-btn" aria-label="More options">
                                 <span class="material-icons">more_vert</span>
@@ -93,7 +93,7 @@
 
                     <!-- Card 2 -->
                     <div class="card" data-category="tools-weight">
-                        <img src="image-card.webp" alt="Upper Programs">
+                        <img src="{{ asset('assets/image-card.webp') }}" alt="Upper Programs">
                         <div class="card-options">
                             <button class="options-btn" aria-label="More options">
                                 <span class="material-icons">more_vert</span>
@@ -122,7 +122,7 @@
 
                     <!-- Card 3 -->
                     <div class="card" data-category="body-weight">
-                        <img src="image-card.webp" alt="Upper Programs">
+                        <img src="{{ asset('assets/image-card.webp') }}" alt="Upper Programs">
                         <div class="card-options">
                             <button class="options-btn" aria-label="More options">
                                 <span class="material-icons">more_vert</span>

@@ -63,7 +63,7 @@
                             <!-- Exercise Cards -->
                             <div class="exercise-card" data-category="body-weight">
                                 <div class="exercise-image">
-                                    <img src="push up.jpg" alt="Push Up">
+                                    <img src="{{ asset('assets/push up.jpg') }}" alt="Push Up">
                                     <div class="exercise-overlay">
                                         <h3>Push Up</h3>
                                         <p>25 × <span class="material-icons add-icon">add</span></p>
@@ -74,7 +74,7 @@
 
                             <div class="exercise-card" data-category="body-weight">
                                 <div class="exercise-image">
-                                    <img src="back up.webp" alt="Back Up">
+                                    <img src="{{ asset('assets/pull up.webp') }}" alt="Back Up">
                                     <div class="exercise-overlay">
                                         <h3>Back Up</h3>
                                         <p>10 × <span class="material-icons add-icon">add</span></p>
@@ -85,7 +85,7 @@
 
                             <div class="exercise-card" data-category="body-weight">
                                 <div class="exercise-image">
-                                    <img src="sit up.jpg" alt="Sit Up">
+                                    <img src="{{ asset('assets/sit up.jpg') }}" alt="Sit Up">
                                     <div class="exercise-overlay">
                                         <h3>Sit Up</h3>
                                         <p>15 × <span class="material-icons add-icon">add</span></p>
