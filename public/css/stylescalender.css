@@ -107,11 +107,15 @@ body {
   }
   
   .dropdown-menu li:hover {
-  }
-  
-  .dropdown:hover .dropdown-menu {
+    background: #333;
+    padding: 0px;
+    list-style: none;
+}
+
+
+.dropdown:hover .dropdown-menu {
     display: block;
-  }
+}
   
   /* Calendar Container */
   .calendar-container {

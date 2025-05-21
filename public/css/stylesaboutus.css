@@ -1,150 +1,59 @@
-/* About Us Page Specific Styles */
+/* public/css/stylesaboutus.css */
 
-/* Hero Section */
-.hero-text {
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin: 20px auto;
+/* About Us Page Specific Styles - Separate CSS file */
+
+/* Specific overrides for About Us page only */
+.content ul {
+    margin-top: 7vh; /* Smaller margin for about us page */
 }
 
-/* Team Section */
-.team-wrap {
-    flex-direction: column;
-    height: auto;
-    gap: 30px;
+/* Enhanced styling for About Us contact section */
+.contact-section .contact-item h3 {
+    color: #FFD700;
+    margin-bottom: 10px;
 }
 
-.team-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 60px;
+.contact-section .contact-info {
+    margin-top: 20px;
 }
 
-.team-member {
-    text-align: center;
-    max-width: 250px;
-}
-
+/* Enhanced styling for team photos */
 .team-photo {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 50%;
+    border: 3px solid #FFD700;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.team-role {
-    font-size: 1rem;
+.team-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
-/* Contact Section */
-.contact-section {
-    padding-bottom: 60px;
+.team-member h3 {
+    color: #FFD700;
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
 
-.contact-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
+/* Responsive adjustments for about us page */
+@media (max-width: 768px) {
+    .hero-text {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+    
+    .team-container {
+        gap: 40px;
+    }
+    
+    .team-photo {
+        width: 150px;
+        height: 150px;
+    }
 }
 
-.contact-intro {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+@media (max-width: 576px) {
+    .contact-info {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
-
-.contact-info {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-.contact-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.contact-button-wrapper {
-    display: inline-block;
-    margin-top: 40px;
-}
-
-/* styles auth login */
-        .user-dropdown {
-            position: relative;
-            display: inline-block;
-            margin-right: 20px;
-        }
-        
-        .user-button {
-            font-family: 'Poppins', sans-serif;
-            padding: 10px 20px;
-            border: none;
-            background: #ffffff;
-            color: #0a0a0a;
-            font-weight: 400;
-            border-radius: 1000px;
-            cursor: pointer;
-            box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.5);
-            transition: box-shadow 0.3s ease-in-out;
-            display: flex;
-            align-items: center;
-        }
-        
-        .user-button:hover {
-            box-shadow: 40px 0px 100px #ffd900a7, -40px 0px 100px #f7eaa5a7;
-        }
-        
-        .user-button:after {
-            content: " ▼";
-            font-size: 10px;
-            margin-left: 5px;
-        }
-        
-        .user-dropdown-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: #181717;
-            display: none;
-            width: 200px;
-            padding: 0;
-            border-radius: 40px;
-            z-index: 10;
-            list-style: none;
-            margin-top: 10px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        }
-        
-        .user-dropdown:hover .user-dropdown-menu {
-            display: block;
-        }
-        
-        .user-dropdown-menu a {
-            padding: 15px 20px;
-            text-decoration: none;
-            color: white;
-            display: block;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background 0.3s;
-        }
-        
-        .user-dropdown-menu a:hover {
-            background: #333;
-        }
-        
-        .user-dropdown-menu a:first-child {
-            border-top-left-radius: 40px;
-            border-top-right-radius: 40px;
-        }
-        
-        .user-dropdown-menu a:last-child {
-            border-bottom: none;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-        }

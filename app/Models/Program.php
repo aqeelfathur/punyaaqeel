@@ -2,27 +2,53 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Program extends Model
 {
     use HasFactory;
 
+    protected $table = 'programs';
     protected $primaryKey = 'id_program';
-    public $incrementing = false;
     protected $keyType = 'string';
-
+    public $incrementing = false;
+    
     protected $fillable = [
-        'id_program', 'nama_program', 'deskripsi_program', 'jenis_program'
+        'id_program',
+        'nama_program',
+        'deskripsi_program',
+        'kategori_program',
+        'program_images'
     ];
 
-    public function details() {
-        return $this->hasMany(DetailProgram::class, 'id_program');
+    /**
+     * Get the URL for the program image
+     * Checks if the image file actually exists
+     * 
+     * @return string
+     */
+    public function getProgramImageUrlAttribute()
+    {
+        // Jika kolom program_images ada nilai dan file-nya benar-benar ada
+        if ($this->program_images && Storage::disk('public')->exists($this->program_images)) {
+            return asset('storage/' . $this->program_images);
+        }
+       
+        return asset('assets/imagesprograms.jpeg');
     }
 
-    public function userWorkouts() {
-        return $this->hasMany(UserWorkout::class, 'program_id');
+    // Relasi ke model UserWorkout
+    public function userWorkouts()
+    {
+        return $this->hasMany(UserWorkout::class, 'program_id', 'id_program');
+    }
+
+    // Relasi ke model User (melalui UserWorkout)
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_workouts', 'program_id', 'user_id')
+                    ->withPivot('calender_id');
     }
 }
-

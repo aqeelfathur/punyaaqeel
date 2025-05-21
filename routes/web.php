@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('landing-page');
+    return view('home');
 });
 
 Route::get('/login', function () {
@@ -79,3 +79,15 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
 Route::get('/settings', [App\Http\Controllers\ProfileController::class, 'settings'])->name('settings');
 Route::put('/settings', [App\Http\Controllers\ProfileController::class, 'updateSettings'])->name('settings.update');
+
+// Stats di home routes
+use App\Http\Controllers\HomeController;
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Workout Programs Routes
+use App\Http\Controllers\WorkoutProgramController;
+Route::get('/workout-programs', [WorkoutProgramController::class, 'index'])->name('workout.programs');
+// Route untuk menambahkan program ke workout user (dilindungi middleware auth)
+Route::post('/workout-programs/add-to-workout', [WorkoutProgramController::class, 'addToWorkout'])
+    ->name('workout.addToWorkout')
+    ->middleware('auth');

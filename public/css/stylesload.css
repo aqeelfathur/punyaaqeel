@@ -119,10 +119,14 @@ nav {
 }
 
 .dropdown-menu li:hover {
+    background: #333;
+    padding: 0px;
+    list-style: none;
 }
 
+
 .dropdown:hover .dropdown-menu {
-  display: block;
+    display: block;
 }
 
 /* WORKOUT HEADER - Exact match */

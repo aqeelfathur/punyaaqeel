@@ -15,11 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id_nama')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('program_id');
+            
+            // Mengubah tipe data program_id dari unsignedBigInteger menjadi string
+            $table->string('program_id');
+            $table->foreign('program_id')->references('id_program')->on('programs')->onDelete('cascade');
+            
             $table->unsignedBigInteger('calender_id');
+            $table->foreign('calender_id')->references('id_calender')->on('calenders')->onDelete('cascade');
+            
             $table->timestamps();
         });
-
     }
 
     /**

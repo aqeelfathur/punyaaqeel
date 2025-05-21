@@ -10,13 +10,15 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    {   
         Schema::create('programs', function (Blueprint $table) {
             $table->string('id_program')->primary();
             $table->string('nama_program', 30);
             $table->string('deskripsi_program', 40);
-            $table->boolean('jenis_program'); // boolean: default/custom?
+            $table->boolean('kategori_program')->default(0);
+            $table->string('program_images')->nullable();
             $table->timestamps();
+
         });
 
     }

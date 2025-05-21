@@ -16,7 +16,19 @@ class Calender extends Model
     ];
 
     public function userWorkouts() {
-        return $this->hasMany(UserWorkout::class, 'calender_id');
+        return $this->hasMany(UserWorkout::class, 'calender_id', 'id_calender');
+    }
+    
+    // Relasi ke model Program (melalui UserWorkout)
+    public function programs()
+    {
+        return $this->hasManyThrough(
+            Program::class,
+            UserWorkout::class,
+            'calender_id',  // Kunci asing pada tabel UserWorkout
+            'id_program',   // Kunci primer pada tabel Program
+            'id_calender',  // Kunci primer pada tabel Calender
+            'program_id'    // Kunci asing pada tabel UserWorkout yang menunjuk ke Program
+        );
     }
 }
-

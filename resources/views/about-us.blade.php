@@ -1,52 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - FitTrack</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/stylesaboutus.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">FIT TRACK</div>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">Programs &#9662;</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="workout-programs">Workout Programs</a></li>
-                        <li><a href="load">Load</a></li>
-                        <li><a href="calendar">Calendar</a></li>
-                        <li><a href="customworkout">Custom</a></li>
-                    </ul>
-                </li>
-                <li><a href="community">Community</a></li>
-                <li><a href="about-us">About Us</a></li>
-            </ul>
-            @auth
-                <div class="user-dropdown">
-                    <button class="user-button">{{ Auth::user()->username }}</button>
-                    <div class="user-dropdown-menu">
-                        <a href="/profile">Profile</a>
-                        <a href="/settings">Settings</a>
-                        <a href="{{ route('logout') }}" 
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
-                </div>
-            @else
-                <a href="/login"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
-            @endauth
-        </nav>
-    </header>
-    
+<!-- resources/views/about-us.blade.php -->
+
+@extends('layouts.main')
+
+@section('title', 'About Us - FitTrack')
+
+@section('additional_css')
+<link rel="stylesheet" href="{{ asset('css/stylesaboutus.css') }}">
+<style>
+    /* About Us Page Specific Styles */
+
+    /* Hero Section */
+    .hero-text {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 20px auto;
+    }
+
+    /* Team Section */
+    .team-wrap {
+        flex-direction: column;
+        height: auto;
+        gap: 30px;
+    }
+
+    .team-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 60px;
+    }
+
+    .team-member {
+        text-align: center;
+        max-width: 250px;
+    }
+
+    .team-photo {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .team-role {
+        font-size: 1rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+        padding-bottom: 60px;
+    }
+
+    .contact-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .contact-intro {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+
+    .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    .contact-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-button-wrapper {
+        display: inline-block;
+        margin-top: 40px;
+    }
+</style>
+@endsection
+
+@section('content')
     <section id="home" class="section hero">
         <h1>About FitTrack</h1>
         <p class="hero-text">Your ultimate fitness companion on the journey to a stronger, healthier you.</p>
@@ -57,7 +96,7 @@
             Our Story
         </ul>
         <div class="content-wrap">
-            <img src="our team.png" alt="Our team">
+            <img src="{{ asset('assets/our team.png') }}" alt="Our team">
             <div class="content-text">
                 <h2>WHO WE ARE</h2>
                 <p>
@@ -75,13 +114,13 @@
                     We created this website so that users can track their progress, share their journey with the community, and ask for as well as exchange advice
                 </p>
             </div>
-            <img src="pull up.webp" alt="Our mission">
+            <img src="{{ asset('assets/pull up.webp') }}" alt="Our mission">
         </div>
     </div>
 
     <div class="content">
         <div class="content-wrap">
-            <img src="push up.jpg" alt="Our values">
+            <img src="{{ asset('assets/push up.jpg') }}" alt="Our values">
             <div class="content-text">
                 <h2>OUR VALUES</h2>
                 <p>
@@ -98,12 +137,12 @@
         <div class="content-wrap team-wrap">
             <div class="team-container">
                 <div class="team-member">
-                    <img src="about us aqeel.JPG" alt="Team member" class="team-photo">
+                    <img src="{{ asset('assets/about us aqeel.JPG') }}" alt="Team member" class="team-photo">
                     <h3>Ananda Aqeel Fathur Rahman</h3>
                     <p class="team-role">Co-Founder FitTrack</p>
                 </div>
                 <div class="team-member">
-                    <img src="about us russel.jpg" alt="Team member" class="team-photo">
+                    <img src="{{ asset('assets/about us russel.jpg') }}" alt="Team member" class="team-photo">
                     <h3>Russel Ishak Dalton Tampubolon</h3>
                     <p class="team-role">Co-Founder FitTrack</p>
                 </div>
@@ -133,7 +172,6 @@
                     <p>Unair</p>
                 </div>
             </div>
-            
+        </div>
     </div>
-</body>
-</html>
+@endsection
