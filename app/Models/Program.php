@@ -20,7 +20,8 @@ class Program extends Model
         'nama_program',
         'deskripsi_program',
         'kategori_program',
-        'program_images'
+        'program_images',
+        'created_by'
     ];
 
     /**
@@ -29,6 +30,16 @@ class Program extends Model
      * 
      * @return string
      */
+    // Relasi dengan User (creator)
+    public function creator() {
+        return $this->belongsTo(User::class, 'created_by', 'id_nama');
+    }
+
+    // Accessor untuk mendapatkan username creator
+    public function getCreatedByUsernameAttribute() {
+        return $this->creator ? $this->creator->username : null;
+    }
+
     public function getProgramImageUrlAttribute()
     {
         // Jika kolom program_images ada nilai dan file-nya benar-benar ada

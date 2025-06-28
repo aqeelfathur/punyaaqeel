@@ -10,7 +10,7 @@ class DetailProgram extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_program', 'id_gerakan'
+        'id_program', 'id_gerakan', 'jumlah_repetisi'
     ];
 
     public function program() {

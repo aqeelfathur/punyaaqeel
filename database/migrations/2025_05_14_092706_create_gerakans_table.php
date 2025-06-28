@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('gerakans', function (Blueprint $table) {
             $table->string('id_gerakan')->primary();
             $table->string('nama_gerakan', 30);
-            $table->integer('jumlah_repetisi')->default(0);
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();
+
+            // Foreign key constraint
+            $table->foreign('created_by')->references('id_nama')->on('users')->onDelete('set null');
         });
 
     }

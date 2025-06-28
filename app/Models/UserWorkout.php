@@ -17,10 +17,10 @@ class UserWorkout extends Model
         'calender_id',
     ];
 
-    // Relasi ke model User
+    // Relasi ke model User - pastikan foreign key sesuai
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id_nama'); // Spesifikasi foreign key dan local key
     }
 
     // Relasi ke model Program
