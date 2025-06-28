@@ -14,11 +14,27 @@ class Gerakan extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id_gerakan', 'nama_gerakan', 'jumlah_repetisi'
+        'id_gerakan', 'nama_gerakan', 'created_by'
     ];
 
+    // Relasi dengan DetailProgram
     public function details() {
         return $this->hasMany(DetailProgram::class, 'id_gerakan');
     }
-}
 
+    // Relasi dengan User (creator)
+    // Karena primary key User adalah 'id_nama', bukan 'id'
+    public function user() {
+        return $this->belongsTo(User::class, 'created_by', 'id_nama');
+    }
+
+    // Alias untuk relasi user (opsional, untuk konsistensi)
+    public function creator() {
+        return $this->belongsTo(User::class, 'created_by', 'id_nama');
+    }
+
+    // Accessor untuk mendapatkan username creator
+    public function getCreatedByUsernameAttribute() {
+        return $this->user ? $this->user->username : null;
+    }
+}

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('id_program');
             $table->string('id_gerakan');
+            $table->integer('jumlah_repetisi')->default(1);
             $table->foreign('id_program')->references('id_program')->on('programs')->onDelete('cascade');
             $table->foreign('id_gerakan')->references('id_gerakan')->on('gerakans')->onDelete('cascade');
             $table->timestamps();

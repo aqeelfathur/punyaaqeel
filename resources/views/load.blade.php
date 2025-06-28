@@ -1,204 +1,302 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ asset('css/stylesload.css') }}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <title>FIT TRACK - Load Programs</title>
-  </head>
-  <body>
-    <!-- Header dengan Navbar  -->
-    <header>
-        <nav>
-            <div class="logo">FIT TRACK</div>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">Programs &#9662;</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="workout-programs">Workout Programs</a></li>
-                        <li><a href="load">Load</a></li>
-                        <li><a href="calendar">Calendar</a></li>
-                        <li><a href="customworkout">Custom</a></li>
-                    </ul>
-                </li>
-                <li><a href="community">Community</a></li>
-                <li><a href="about-us">About Us</a></li>
-            </ul>
-            @auth
-                <div class="user-dropdown">
-                    <button class="user-button">{{ Auth::user()->username }}</button>
-                    <div class="user-dropdown-menu">
-                        <a href="/profile">Profile</a>
-                        <a href="/settings">Settings</a>
-                        <a href="{{ route('logout') }}" 
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
+<!-- resources/views/load.blade.php -->
+
+@extends('layouts.main')
+
+@section('title', 'My Workout Load - FitTrack')
+
+@section('additional_css')
+<link rel="stylesheet" href="{{ asset('css/stylesload.css') }}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@endsection
+
+@push('body_class', 'load-page')
+
+@section('content')
+    <main>
+        <section id="workout-header" class="workout-header">
+            <div class="container">
+                <h1 class="section-title">My Workout Load</h1>
+                
+                <div class="search-and-filter">
+                    <div class="search-bar">
+                        <form action="{{ route('load') }}" method="GET">
+                            <input type="text" name="search" placeholder="Search your programs..." value="{{ $search ?? '' }}">
+                            <button type="submit"><span class="material-icons">search</span></button>
                         </form>
                     </div>
                 </div>
-            @else
-                <a href="/login"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
-            @endauth
-        </nav>
-    </header>
-    
-    <!-- Section search bar  -->
-    <section id="workout-header" class="workout-header">
-      <div class="container">
-        <h1 class="section-title">Load</h1>
-        <div class="search-and-filter">
-          <div class="search-bar">
-            <form action="">
-              <input type="text" placeholder="Search Program">
-              <button type="submit"><span class="material-icons">search</span></button>
-            </form>
-          </div>
-          
-          <!-- Filter bar  -->
-          <div class="filter-bar">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Body Weight</button>
-            <button class="filter-btn">Weights</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Workout Section - Using exact same structure as workout-programs.html -->
-    <section class="workout-section">
-      <div class="container">
-        <div class="load-cards">
-          <!-- Upper Programs Card -->
-          <div class="card">
-            <img src="https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png" alt="Upper Programs">
-            <div class="card-content">
-              <h3>Upper Programs</h3>
-              <p>Target the arms, shoulders, chest, and upper back while increasing lean muscle mass, reducing body fat</p>
-              <a href="list" class="workout-now-btn">Workout Now</a>
             </div>
-          </div>
-
-          <!-- Full Body Programs Card -->
-          <div class="card">
-            <img src="https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png" alt="Full Body Programs">
-            <div class="card-content">
-              <h3>Full Body Programs</h3>
-              <p>Complete full body workout targeting all major muscle groups for balanced development and fitness</p>
-              <a href="list" class="workout-now-btn">Workout Now</a>
-            </div>
-          </div>
-
-          <!-- Core Programs Card -->
-          <div class="card">
-            <img src="https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png" alt="Core Programs">
-            <div class="card-content">
-              <h3>Core Programs</h3>
-              <p>Develop core strength, stability, and endurance with targeted abdominal and lower back exercises</p>
-              <a href="list" class="workout-now-btn">Workout Now</a>
-            </div>
-          </div>
-
-          <!-- Lower Programs Card -->
-          <div class="card">
-            <img src="https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png" alt="Lower Programs">
-            <div class="card-content">
-              <h3>Lower Programs</h3>
-              <p>Target the legs, glutes, and lower body while increasing strength and improving overall fitness</p>
-              <a href="list" class="workout-now-btn">Workout Now</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Keep the original load section hidden for now to ensure nothing breaks -->
-    <div class="load" style="display: none;">
-      <div class="div">
-        <div class="tengah">
-          <div class="text-wrapper">Load</div>
-        </div>
-        <div class="group">
-          <div class="overlap">
-            <div class="text-wrapper-2">Upper Programs</div>
-            <p class="p">
-              Target the arms, shoulders, chest, and upper back while increasing lean muscle mass, reducing body fat
-            </p>
-            <div class="overlap-group-wrapper">
-              <a href="list>
-                <div class="overlap-group">
-                  <div class="text-wrapper-3">Workout Now</div>
+        </section>
+      
+        <section class="workout-section">
+            <div class="container">
+                <!-- Toast Container -->
+                <div id="toast-notification" class="toast-notification">
+                    <div class="toast-content">
+                        <span id="toast-message"></span>
+                    </div>
                 </div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="overlap-wrapper">
-          <div class="overlap-2">
-            <img class="image" src="https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png" alt="Workout Image" />
-            <div class="text-wrapper-2">Lower Programs</div>
-            <p class="p">
-              Target the legs, glutes, and lower body while increasing strength and improving overall fitness
-            </p>
-            <div class="overlap-group-wrapper">
-              <a href="list">
-                <div class="overlap-group">
-                  <div class="text-wrapper-3">Workout Now</div>
+                
+                @if(session('error'))
+                    <div class="alert-error">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                
+                <!-- Load Info -->
+                <div class="load-info">
+                    <h4><span class="material-icons" style="vertical-align: middle; margin-right: 8px;">fitness_center</span>Your Workout Load</h4>
+                    <p>Programs you've added to your load are ready to start. Click "Start Workout" to begin your fitness journey!</p>
                 </div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="div-wrapper">
-          <div class="overlap-2">
-            <img class="image" src="https://c.animaapp.com/m9i3gunlyy7PSL/img/image-3-3.png" alt="Workout Image" />
-            <div class="text-wrapper-2">Core Programs</div>
-            <p class="p">
-              Develop core strength, stability, and endurance with targeted abdominal and lower back exercises
-            </p>
-            <div class="overlap-group-wrapper">
-              <a href="list">
-                <div class="overlap-group">
-                  <div class="text-wrapper-3">Workout Now</div>
+                
+                <div class="workout-cards">
+                    @if(isset($programs) && $programs->count() > 0)
+                        @foreach($programs as $program)
+                            <div class="card" data-category="{{ $program->kategori_program }}">
+                                <div class="program-image">
+                                    <img src="{{ $program->program_image_url ?? asset('images/default-workout.jpg') }}" 
+                                         alt="{{ $program->nama_program }}">
+                                </div>
+                                <div class="card-content">
+                                    <h3>{{ $program->nama_program }}</h3>
+                                    <p>{{ $program->deskripsi_program }}</p>
+                                    <p class="added-date">
+                                        <span class="material-icons" style="font-size: 14px;">schedule</span>
+                                        Added: {{ $program->added_at->format('M d, Y') }}
+                                    </p>
+                                    
+                                    <div class="card-actions">
+                                        <button class="workout-btn" 
+                                                data-program-id="{{ $program->id_program }}">
+                                            <span class="material-icons" style="font-size: 16px;">play_arrow</span>
+                                            Start Workout
+                                        </button>
+                                        <button class="remove-btn" 
+                                                data-workout-id="{{ $program->workout_id }}"
+                                                data-program-name="{{ $program->nama_program }}">
+                                            <span class="material-icons" style="font-size: 14px;">delete</span>
+                                            Remove from Load
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="empty-load">
+                            <span class="material-icons">fitness_center</span>
+                            <h3>No Programs in Your Load</h3>
+                            <p>You haven't added any workout programs to your load yet.<br>Browse our programs and add some to get started!</p>
+                            <a href="{{ route('workout.programs') }}" class="browse-programs-btn">
+                                <span class="material-icons">explore</span>
+                                Browse Workout Programs
+                            </a>
+                        </div>
+                    @endif
                 </div>
-              </a>
             </div>
-          </div>
-        </div>
-        <div class="group-2">
-          <div class="overlap">
-            <div class="text-wrapper-2">Full Body Programs</div>
-            <p class="p">
-              Complete full body workout targeting all major muscle groups for balanced development and fitness
-            </p>
-            <div class="overlap-group-wrapper">
-              <a href="list">
-                <div class="overlap-group">
-                  <div class="text-wrapper-3">Workout Now</div>
+        </section>
+    </main>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Remove Program</h3>
+                <button class="modal-close" onclick="closeConfirmModal()">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-icon">
+                    <span class="material-icons">warning</span>
                 </div>
-              </a>
+                <p id="confirm-message"></p>
             </div>
-          </div>
+            <div class="modal-footer">
+                <button id="confirm-cancel" class="btn btn-secondary">Cancel</button>
+                <button id="confirm-remove" class="btn btn-danger">Remove</button>
+            </div>
         </div>
-      </div>
     </div>
+@endsection
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const filterBtns = document.querySelectorAll('.filter-btn');
+@section('scripts')
+<script>
+    // Add body class for load page
+    document.body.classList.add('load-page');
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const confirmModal = document.getElementById('confirm-modal');
+        const confirmMessage = document.getElementById('confirm-message');
+        const confirmCancel = document.getElementById('confirm-cancel');
+        const confirmRemove = document.getElementById('confirm-remove');
+        const toast = document.getElementById('toast-notification');
+        const toastMessage = document.getElementById('toast-message');
         
-        filterBtns.forEach(btn => {
-          btn.addEventListener('click', function() {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-          });
+        let currentWorkoutId = null;
+        let currentRemoveBtn = null;
+        
+        // Toast function - matching workout page style
+        function showToast(message, isSuccess) {
+            toast.classList.remove('success', 'error');
+            toast.classList.add(isSuccess ? 'success' : 'error');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Close modal function
+        window.closeConfirmModal = function() {
+            const modal = document.getElementById('confirm-modal');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+            currentWorkoutId = null;
+            currentRemoveBtn = null;
+        }
+        
+        // Start Workout functionality
+        const workoutBtns = document.querySelectorAll('.workout-btn');
+        workoutBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const programId = this.getAttribute('data-program-id');
+                const button = this;
+                
+                // Show loading state
+                const originalText = button.innerHTML;
+                button.classList.add('btn-loading');
+                button.disabled = true;
+                
+                // Send AJAX request
+                $.ajax({
+                    url: '{{ route("load.startWorkout") }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        program_id: programId,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if(response.success) {
+                            showToast(response.message, true);
+                            // Redirect after short delay
+                            setTimeout(() => {
+                                window.location.href = response.redirect_url;
+                            }, 1200);
+                        } else {
+                            showToast(response.message, false);
+                            // Restore button
+                            button.classList.remove('btn-loading');
+                            button.disabled = false;
+                            button.innerHTML = originalText;
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        let errorMessage = 'An error occurred. Please try again.';
+                        if(xhr.responseJSON && xhr.responseJSON.message) {
+                            errorMessage = xhr.responseJSON.message;
+                        }
+                        showToast(errorMessage, false);
+                        
+                        // Restore button
+                        button.classList.remove('btn-loading');
+                        button.disabled = false;
+                        button.innerHTML = originalText;
+                    }
+                });
+            });
         });
-      });
-    </script>
-  </body>
-</html>
+        
+        // Remove from Load functionality
+        const removeBtns = document.querySelectorAll('.remove-btn');
+        removeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const workoutId = this.getAttribute('data-workout-id');
+                const programName = this.getAttribute('data-program-name');
+                
+                // Show confirmation modal
+                currentWorkoutId = workoutId;
+                currentRemoveBtn = this;
+                confirmMessage.textContent = `Are you sure you want to remove "${programName}" from your workout load? This action cannot be undone.`;
+                confirmModal.style.display = 'flex';
+                setTimeout(() => {
+                    confirmModal.classList.add('show');
+                }, 10);
+            });
+        });
+        
+        // Modal functionality
+        confirmCancel.addEventListener('click', function() {
+            closeConfirmModal();
+        });
+        
+        confirmRemove.addEventListener('click', function() {
+            if (currentWorkoutId && currentRemoveBtn) {
+                // Show loading on remove button
+                const originalText = currentRemoveBtn.innerHTML;
+                this.innerHTML = '<span class="material-icons">hourglass_empty</span> Removing...';
+                this.disabled = true;
+                confirmCancel.disabled = true;
+                
+                // Send AJAX request
+                $.ajax({
+                    url: '{{ route("load.removeFromLoad") }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        workout_id: currentWorkoutId,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if(response.success) {
+                            showToast(response.message, true);
+                            closeConfirmModal();
+                            // Remove the card from DOM
+                            const card = currentRemoveBtn.closest('.card');
+                            card.classList.add('fade-out');
+                            setTimeout(() => {
+                                card.remove();
+                                // Check if no cards left
+                                const remainingCards = document.querySelectorAll('.card');
+                                if (remainingCards.length === 0) {
+                                    location.reload(); // Reload to show empty state
+                                }
+                            }, 500);
+                        } else {
+                            showToast(response.message, false);
+                            // Restore button
+                            confirmRemove.innerHTML = 'Remove';
+                            confirmRemove.disabled = false;
+                            confirmCancel.disabled = false;
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        let errorMessage = 'An error occurred. Please try again.';
+                        if(xhr.responseJSON && xhr.responseJSON.message) {
+                            errorMessage = xhr.responseJSON.message;
+                        }
+                        showToast(errorMessage, false);
+                        
+                        // Restore button
+                        confirmRemove.innerHTML = 'Remove';
+                        confirmRemove.disabled = false;
+                        confirmCancel.disabled = false;
+                    }
+                });
+            }
+        });
+        
+        // Close modal when clicking outside
+        confirmModal.addEventListener('click', function(event) {
+            if (event.target === confirmModal) {
+                closeConfirmModal();
+            }
+        });
+    });
+</script>
+@endsection

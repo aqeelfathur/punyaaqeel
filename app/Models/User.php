@@ -16,13 +16,27 @@ class User extends Authenticatable
 
     protected $fillable = [
         'username',
-        'password', // Menggunakan password standar Laravel
+        'password',
         'email',
-        'phone_number',
-        'is_admin'
+        'phone_number', 
+        'is_admin'  // Konsisten dengan nama kolom
     ];
 
     protected $hidden = [
-        'password', // Menggunakan password standar Laravel
+        'password',
     ];
+
+    // Tambahkan casting untuk is_admin
+    protected $casts = [
+        'is_admin' => 'boolean',
+    ];
+
+    public function createdPrograms() {
+        return $this->hasMany(Program::class, 'created_by', 'id_nama');
+    }
+
+    // Jika ada relasi dengan Gerakan juga
+    public function createdGerakans() {
+        return $this->hasMany(Gerakan::class, 'created_by', 'id_nama');
+    }
 }

@@ -39,17 +39,34 @@ class LoginController extends Controller
                 ->withInput();
         }
 
-        // Coba login
+        // Siapkan credentials untuk authentication
         $credentials = [
             'username' => $request->username,
             'password' => $request->password
         ];
 
+        // Coba login
         if (Auth::attempt($credentials)) {
-            // Authentication passed
+            // Authentication berhasil
             $request->session()->regenerate();
             
-            // Redirect ke halaman utama setelah login berhasil
+            // Debug: Cek nilai is_admin (sesuai dengan nama kolom di database)
+            $user = Auth::user();
+            \Log::info('User Login Debug:', [
+                'id' => $user->id_nama,
+                'username' => $user->username,
+                'is_admin' => $user->is_admin,
+                'is_admin_type' => gettype($user->is_admin)
+            ]);
+            
+            // Cek apakah user adalah admin - gunakan is_admin (sesuai database)
+            if ($user->is_admin === true || $user->is_admin === 1 || $user->is_admin == '1') {
+                \Log::info('Redirecting to admin dashboard');
+                return redirect('/admin/dashboard');
+            }
+            
+            // Jika bukan admin, redirect ke halaman utama
+            \Log::info('Redirecting to home');
             return redirect('/')->with('success', 'Login berhasil!');
         }
 
@@ -72,6 +89,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('home')->with('success', 'Anda telah logout.');
     }
 }

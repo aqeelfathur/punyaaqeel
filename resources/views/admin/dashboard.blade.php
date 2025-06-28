@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-        
-    </style>
 </head>
 <body>
     <div class="sidebar">
@@ -19,46 +16,55 @@
         </div>
         <ul class="sidebar-menu">
             <li class="active">
-                <a href="dashboard.html">
+                <a href="{{ route('admin.dashboard') }}">
                     <i class="material-icons">dashboard</i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="manage-users.html">
+                <a href="#" onclick="alert('Fitur akan segera tersedia')">
                     <i class="material-icons">people</i>
                     <span>Kelola Pengguna</span>
                 </a>
             </li>
             <li>
-                <a href="manage-programs.html">
+                <a href="#" onclick="alert('Fitur akan segera tersedia')">
                     <i class="material-icons">fitness_center</i>
                     <span>Kelola Program</span>
                 </a>
             </li>
             <li>
-                <a href="manage-community.html">
+                <a href="{{ route('community') }}">
                     <i class="material-icons">forum</i>
                     <span>Kelola Komunitas</span>
                 </a>
             </li>
             <li>
-                <a href="reports.html">
+                <a href="#" onclick="alert('Fitur akan segera tersedia')">
+                    <i class="material-icons">directions_run</i>
+                    <span>Kelola Gerakan</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="alert('Fitur akan segera tersedia')">
                     <i class="material-icons">bar_chart</i>
                     <span>Laporan</span>
                 </a>
             </li>
             <li>
-                <a href="settings.html">
+                <a href="{{ route('settings') }}">
                     <i class="material-icons">settings</i>
                     <span>Pengaturan</span>
                 </a>
             </li>
             <li>
-                <a href="login.html">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="material-icons">logout</i>
                     <span>Keluar</span>
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </li>
         </ul>
     </div>
@@ -68,50 +74,48 @@
         <div class="header">
             <h1 class="page-title">Dashboard</h1>
             <div class="user-info">
-                <div class="user-name">Admin</div>
+                <div class="user-name">{{ Auth::user()->name ?? 'Admin' }}</div>
                 <div class="user-avatar">
                     <i class="material-icons">person</i>
                 </div>
             </div>
         </div>
 
-        <!-- Dashboard Cards -->
         <div class="dashboard-cards">
             <div class="card">
                 <div class="card-icon">
                     <i class="material-icons">people</i>
                 </div>
                 <div class="card-title">Total Pengguna</div>
-                <div class="card-value">1,234</div>
+                <div class="card-value">{{ $totalUsers }}</div>
             </div>
             <div class="card">
                 <div class="card-icon">
                     <i class="material-icons">fitness_center</i>
                 </div>
                 <div class="card-title">Program Latihan</div>
-                <div class="card-value">58</div>
+                <div class="card-value">{{ $totalPrograms }}</div>
             </div>
             <div class="card">
                 <div class="card-icon">
                     <i class="material-icons">forum</i>
                 </div>
                 <div class="card-title">Posting Komunitas</div>
-                <div class="card-value">325</div>
+                <div class="card-value">{{ $totalCommunities }}</div>
             </div>
             <div class="card">
                 <div class="card-icon">
                     <i class="material-icons">event_available</i>
                 </div>
                 <div class="card-title">Workout Hari Ini</div>
-                <div class="card-value">92</div>
+                <div class="card-value">{{ $workoutsToday }}</div>
             </div>
         </div>
 
-        <!-- Recent Users -->
         <div class="recent-section">
             <div class="section-header">
                 <h2 class="section-title">Pengguna Terbaru</h2>
-                <button class="view-all">Lihat Semua</button>
+                <button class="view-all" onclick="alert('Fitur akan segera tersedia')">Lihat Semua</button>
             </div>
             <table>
                 <thead>
@@ -119,50 +123,32 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Tanggal Bergabung</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
+                        <th>No Telepon</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse($recentUsers as $user)
                     <tr>
-                        <td>Budi Santoso</td>
-                        <td>budi@example.com</td>
-                        <td>12 Apr 2025</td>
-                        <td><span class="status active">Aktif</span></td>
-                        <td>
-                            <button class="action-btn"><i class="material-icons">edit</i></button>
-                            <button class="action-btn"><i class="material-icons">delete</i></button>
-                        </td>
+                        <td>{{ $user->username }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->created_at->format('d M Y') }}</td>
+                        <td>{{ $user->phone_number }} </td>
+                     
                     </tr>
+                    @empty
                     <tr>
-                        <td>Siti Rahma</td>
-                        <td>siti@example.com</td>
-                        <td>10 Apr 2025</td>
-                        <td><span class="status active">Aktif</span></td>
-                        <td>
-                            <button class="action-btn"><i class="material-icons">edit</i></button>
-                            <button class="action-btn"><i class="material-icons">delete</i></button>
-                        </td>
+                        <td colspan="5" style="text-align: center; color: #aaa;">Tidak ada pengguna terbaru</td>
                     </tr>
-                    <tr>
-                        <td>Deni Cahyadi</td>
-                        <td>deni@example.com</td>
-                        <td>9 Apr 2025</td>
-                        <td><span class="status pending">Pending</span></td>
-                        <td>
-                            <button class="action-btn"><i class="material-icons">edit</i></button>
-                            <button class="action-btn"><i class="material-icons">delete</i></button>
-                        </td>
-                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
 
-        <!-- Recent Workouts -->
+        <!-- Recent Programs -->
         <div class="recent-section">
             <div class="section-header">
                 <h2 class="section-title">Program Latihan Terbaru</h2>
-                <button class="view-all">Lihat Semua</button>
+                <button class="view-all" onclick="alert('Fitur akan segera tersedia')">Lihat Semua</button>
             </div>
             <table>
                 <thead>
@@ -171,43 +157,68 @@
                         <th>Kategori</th>
                         <th>Tanggal Dibuat</th>
                         <th>Creator</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse($recentPrograms as $program)
                     <tr>
-                        <td>Full Body Workout</td>
-                        <td>Umum</td>
-                        <td>15 Apr 2025</td>
-                        <td>Admin</td>
-                        <td>
-                            <button class="action-btn"><i class="material-icons">edit</i></button>
-                            <button class="action-btn"><i class="material-icons">delete</i></button>
-                        </td>
+                        <td>{{ $program->nama_program }}</td>
+                        <td>{{ $program->kategori_program ? 'Tools Weight' : 'Body Weight' }}</td>
+                        <td>{{ $program->created_at->format('d M Y') }}</td>
+                        <td>{{ $program->user->username ?? 'Admin' }}</td>
+                       
                     </tr>
+                    @empty
                     <tr>
-                        <td>Chest Day Challenge</td>
-                        <td>Chest</td>
-                        <td>14 Apr 2025</td>
-                        <td>Admin</td>
-                        <td>
-                            <button class="action-btn"><i class="material-icons">edit</i></button>
-                            <button class="action-btn"><i class="material-icons">delete</i></button>
-                        </td>
+                        <td colspan="5" style="text-align: center; color: #aaa;">Tidak ada program terbaru</td>
                     </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Recent Movements -->
+        <div class="recent-section">
+            <div class="section-header">
+                <h2 class="section-title">Gerakan Terbaru</h2>
+                <button class="view-all" onclick="alert('Fitur akan segera tersedia')">Lihat Semua</button>
+            </div>
+            <table>
+                <thead>
                     <tr>
-                        <td>Abs Workout</td>
-                        <td>Abs</td>
-                        <td>12 Apr 2025</td>
-                        <td>Admin</td>
-                        <td>
-                            <button class="action-btn"><i class="material-icons">edit</i></button>
-                            <button class="action-btn"><i class="material-icons">delete</i></button>
-                        </td>
+                        <th>Nama Gerakan</th>
+                        <th>Dibuat Oleh</th>
+                        <th>Tanggal Dibuat</th>
                     </tr>
+                </thead>
+                <tbody>
+                    @forelse($recentGerakan as $gerakan)
+                    <tr>
+                        <td>{{ $gerakan->nama_gerakan }}</td>   
+                        <td>{{ $gerakan->user->username }}</td>
+                        <td>{{ $gerakan->created_at-> format ('d M Y')}}</td>
+                     
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: #aaa;">Tidak ada gerakan terbaru</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
     </div>
+
+    @if(session('success'))
+        <script>
+            alert('{{ session('success') }}');
+        </script>
+    @endif
+
+    @if(session('error'))
+        <script>
+            alert('{{ session('error') }}');
+        </script>
+    @endif
 </body>
 </html>

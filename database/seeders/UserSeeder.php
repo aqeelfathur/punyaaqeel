@@ -29,6 +29,15 @@ class UserSeeder extends Seeder
                 'is_admin' => false,
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'username' => 'admin',
+                'password' => Hash::make('admin123'),
+                'email' => 'admin@gmail.com',
+                'phone_number' => '081223232323',
+                'is_admin' => true,
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }
