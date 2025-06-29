@@ -6,30 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-       Schema::create('user_workouts', function (Blueprint $table) {
+        Schema::create('user_workouts', function (Blueprint $table) {
             $table->id();
+
+            // Relasi ke users
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id_nama')->on('users')->onDelete('cascade');
-            
-            // Mengubah tipe data program_id dari unsignedBigInteger menjadi string
+
+            // Relasi ke programs
             $table->string('program_id');
             $table->foreign('program_id')->references('id_program')->on('programs')->onDelete('cascade');
-            
-            $table->unsignedBigInteger('calender_id');
-            $table->foreign('calender_id')->references('id_calender')->on('calenders')->onDelete('cascade');
-            
-            $table->timestamps();
+
+            // Status (optional: bisa 'scheduled', 'in-progress', dll)
+            $table->string('status')->default('scheduled');
+
+            $table->timestamps(); // <== sudah ada created_at dan updated_at
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('user_workouts');

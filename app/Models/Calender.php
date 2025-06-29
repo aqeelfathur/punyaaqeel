@@ -2,33 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Calender extends Model
 {
     use HasFactory;
 
+    protected $table = 'calenders';
     protected $primaryKey = 'id_calender';
 
+    // Jika tidak menggunakan UUID/increment default
+    public $incrementing = true;
+    protected $keyType = 'int';
+
     protected $fillable = [
-        'tanggal_calender', 'hari_calender', 'tahun_calender', 'status_calender'
+        'tanggal_penuh',
     ];
 
-    public function userWorkouts() {
-        return $this->hasMany(UserWorkout::class, 'calender_id', 'id_calender');
-    }
-    
-    // Relasi ke model Program (melalui UserWorkout)
-    public function programs()
+    // Relasi jika nanti dibutuhkan (misal user_workouts)
+    public function userWorkouts()
     {
-        return $this->hasManyThrough(
-            Program::class,
-            UserWorkout::class,
-            'calender_id',  // Kunci asing pada tabel UserWorkout
-            'id_program',   // Kunci primer pada tabel Program
-            'id_calender',  // Kunci primer pada tabel Calender
-            'program_id'    // Kunci asing pada tabel UserWorkout yang menunjuk ke Program
-        );
+        return $this->hasMany(UserWorkout::class, 'calender_id', 'id_calender');
     }
 }

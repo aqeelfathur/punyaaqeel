@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $program->nama_program ?? 'Workout' }} - FIT TRACK</title>
-    <link rel="stylesheet" href="{{ asset('css/stylelist.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styleslist.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -118,10 +118,16 @@
                     <i class="fas fa-pause"></i>
                     Pause & Save
                 </a>
-                <button type="submit" class="finish-btn" id="finishWorkout" disabled>
-                    <i class="fas fa-trophy"></i>
-                    Complete Workout
-                </button>
+                <form action="{{ route('load.finish') }}" method="POST" id="finishWorkoutForm">
+                    @csrf
+                    <input type="hidden" name="program_id" value="{{ $program->id_program }}">
+                    
+                    <button type="submit" class="finish-btn" id="finishWorkout" disabled>
+                        <i class="fas fa-trophy"></i>
+                        Complete Workout
+                    </button>
+                </form>
+
             </div>
         </form>
 

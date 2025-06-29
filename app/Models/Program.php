@@ -65,12 +65,17 @@ class Program extends Model
     }
     // Relasi many-to-many ke Gerakan
      public function gerakans()
-{
-    return $this->belongsToMany(
-        Gerakan::class,      
-        'detail_programs',   
-        'id_program',       
-        'id_gerakan'         
-    )->withTimestamps();
-}
+    {
+        return $this->belongsToMany(
+            Gerakan::class,      
+            'detail_programs',   
+            'id_program',       
+            'id_gerakan'         
+        )->withTimestamps();
+    }
+    public function detailPrograms()
+    {
+        return $this->hasMany(\App\Models\DetailProgram::class, 'id_program', 'id_program');
+    }
+
 }

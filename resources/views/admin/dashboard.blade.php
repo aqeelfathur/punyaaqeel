@@ -15,42 +15,7 @@
             <div style="font-size: 0.8rem; color: #aaa;">Admin Panel</div>
         </div>
         <ul class="sidebar-menu">
-            <li class="active">
-                <a href="{{ route('admin.dashboard') }}">
-                    <i class="material-icons">dashboard</i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" onclick="alert('Fitur akan segera tersedia')">
-                    <i class="material-icons">people</i>
-                    <span>Kelola Pengguna</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" onclick="alert('Fitur akan segera tersedia')">
-                    <i class="material-icons">fitness_center</i>
-                    <span>Kelola Program</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('community') }}">
-                    <i class="material-icons">forum</i>
-                    <span>Kelola Komunitas</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" onclick="alert('Fitur akan segera tersedia')">
-                    <i class="material-icons">directions_run</i>
-                    <span>Kelola Gerakan</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" onclick="alert('Fitur akan segera tersedia')">
-                    <i class="material-icons">bar_chart</i>
-                    <span>Laporan</span>
-                </a>
-            </li>
+            
             <li>
                 <a href="{{ route('settings') }}">
                     <i class="material-icons">settings</i>

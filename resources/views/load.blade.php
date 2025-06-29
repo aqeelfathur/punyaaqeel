@@ -20,7 +20,7 @@
                 
                 <div class="search-and-filter">
                     <div class="search-bar">
-                        <form action="{{ route('load') }}" method="GET">
+                        <form action="{{ route('load.index') }}" method="GET">
                             <input type="text" name="search" placeholder="Search your programs..." value="{{ $search ?? '' }}">
                             <button type="submit"><span class="material-icons">search</span></button>
                         </form>

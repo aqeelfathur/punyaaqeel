@@ -7,6 +7,9 @@ use App\Models\Program;
 use App\Models\UserWorkout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Models\Calender;
+use App\Models\WorkoutLog;
+use Illuminate\Support\Carbon;
 
 class WorkoutController extends Controller
 {
@@ -70,22 +73,8 @@ class WorkoutController extends Controller
      */
     public function addToWorkout(Request $request)
     {
-        // Log untuk debugging
-        Log::info('addToWorkout method called', [
-            'request_data' => $request->all(),
-            'user_authenticated' => Auth::check(),
-            'user_id' => Auth::check() ? Auth::user()->id_nama : null,
-            'request_headers' => $request->headers->all()
-        ]);
-
         try {
-            // Check if user is authenticated - dengan response yang lebih jelas
             if (!Auth::check()) {
-                Log::warning('Unauthenticated user trying to add workout', [
-                    'ip' => $request->ip(),
-                    'user_agent' => $request->userAgent()
-                ]);
-                
                 return response()->json([
                     'success' => false,
                     'message' => 'Please login to add programs to your workout.',
@@ -93,117 +82,62 @@ class WorkoutController extends Controller
                     'error_code' => 'UNAUTHENTICATED'
                 ], 401);
             }
-            
-            // Validate request
+
             $validated = $request->validate([
                 'program_id' => 'required|string|exists:programs,id_program'
             ]);
-            
+
             $userId = Auth::user()->id_nama;
             $programId = $validated['program_id'];
-            
-            // Debug log
-            Log::info('Adding program to workout', [
-                'user_id' => $userId,
-                'program_id' => $programId
-            ]);
-            
-            // Check if program already exists in user's workout
+
+            // Cek apakah sudah ada
             $existingWorkout = UserWorkout::where('user_id', $userId)
                 ->where('program_id', $programId)
                 ->first();
-            
+
             if ($existingWorkout) {
-                Log::info('Program already in workout', [
-                    'user_id' => $userId,
-                    'program_id' => $programId,
-                    'existing_workout_id' => $existingWorkout->id
-                ]);
-                
                 return response()->json([
                     'success' => false,
                     'message' => 'Program already added to your workout load.',
                     'error_code' => 'ALREADY_EXISTS'
                 ]);
             }
-            
-            // Get program details for response
-            $program = Program::find($programId);
-            if (!$program) {
-                Log::error('Program not found', ['program_id' => $programId]);
-                
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Program not found.',
-                    'error_code' => 'PROGRAM_NOT_FOUND'
-                ], 404);
-            }
-            
-            // Pastikan calendar data ada - create if not exists
-            $calendar = \App\Models\Calender::firstOrCreate([
-                'id_calender' => 1
-            ], [
-                'tanggal_calender' => (int)date('d'),
-                'hari_calender' => date('l'),
-                'tahun_calender' => (int)date('Y'),
-                'status_calender' => false
-            ]);
-            
-            // Create new user workout entry
+
+            // Tambahkan program ke workout user (hanya sebagai load/bookmark)
             $userWorkout = UserWorkout::create([
                 'user_id' => $userId,
                 'program_id' => $programId,
-                'calender_id' => $calendar->id_calender
+                'status' => 'scheduled'
             ]);
-            
-            Log::info('Program successfully added to workout', [
-                'user_id' => $userId,
-                'program_id' => $programId,
-                'workout_id' => $userWorkout->id,
-                'calendar_id' => $calendar->id_calender
-            ]);
-            
+
+            $program = Program::find($programId);
+
             return response()->json([
                 'success' => true,
-                'message' => 'Program "' . $program->nama_program . '" has been added to your workout load!',
+                'message' => 'Program "' . $program->nama_program . '" has been added to your workout!',
                 'data' => [
                     'workout_id' => $userWorkout->id,
                     'program_name' => $program->nama_program,
                     'program_id' => $program->id_program
                 ]
             ]);
-            
         } catch (\Illuminate\Validation\ValidationException $e) {
-            Log::error('Validation error in addToWorkout', [
-                'errors' => $e->errors(),
-                'request_data' => $request->all()
-            ]);
-            
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid program selected.',
                 'errors' => $e->errors(),
                 'error_code' => 'VALIDATION_FAILED'
             ], 422);
-            
         } catch (\Exception $e) {
-            Log::error('Exception in addToWorkout', [
-                'message' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
-                'user_id' => Auth::check() ? Auth::user()->id_nama : 'Not authenticated',
-                'program_id' => $request->program_id ?? 'N/A',
-                'trace' => $e->getTraceAsString()
-            ]);
-            
             return response()->json([
                 'success' => false,
-                'message' => 'An error occurred while adding the program. Please try again.',
+                'message' => 'An error occurred while adding the program.',
                 'error' => app()->environment('local') ? $e->getMessage() : 'Internal Server Error',
                 'error_code' => 'SERVER_ERROR'
             ], 500);
         }
     }
+
     /**
      * Remove program from user's workout load
      */
@@ -323,9 +257,27 @@ class WorkoutController extends Controller
         return view('list', compact('program', 'detailPrograms'));
     }
 
+    
+
     public function completeProgram($id)
     {
-        // Logic untuk menyelesaikan workout
-        return redirect()->route('load')->with('success', 'Workout selesai!');
+        $userId = Auth::user()->id_nama;
+        $today = Carbon::now()->format('Y-m-d');
+
+        // Simpan ke calenders (kalau belum ada)
+        $calendar = Calender::firstOrCreate(
+            ['tanggal_penuh' => $today],
+            ['hari_calender' => now()->translatedFormat('l')]
+        );
+
+        // Simpan ke workout_logs
+        WorkoutLog::create([
+            'user_id' => $userId,
+            'program_id' => $id,
+            'tanggal_workout' => $today,
+        ]);
+
+        return redirect()->route('load.index')->with('success', 'Workout berhasil diselesaikan dan dicatat!');
     }
+
 }

@@ -7,6 +7,7 @@ use App\Models\UserWorkout;
 use App\Models\Program;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Models\Calender;
 
 class LoadController extends Controller
 {
@@ -213,33 +214,73 @@ class LoadController extends Controller
         }
     }
     /**
- * Show checklist gerakan untuk program tertentu di load user.
- */
-public function exercises($program_id)
-{
-    // Pastikan user sudah login
-    if (!Auth::check()) {
-        return redirect()->route('login.form');
+     * Show checklist gerakan untuk program tertentu di load user.
+     */
+    public function exercises($program_id)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login.form');
+        }
+
+        $userId = Auth::user()->id_nama;
+
+        // Pastikan program ini ada di load user
+        $exists = UserWorkout::where('user_id', $userId)
+                            ->where('program_id', $program_id)
+                            ->exists();
+
+        if (! $exists) {
+            abort(403, 'Program tidak ada di load Anda.');
+        }
+
+        // Ambil program + detail program + gerakannya
+        $program = Program::with('detailPrograms.gerakan')
+                        ->where('id_program', $program_id)
+                        ->firstOrFail();
+
+        $detailPrograms = $program->detailPrograms;
+
+        return view('load.exercises', compact('program', 'detailPrograms'));
     }
 
-    $userId = Auth::user()->id_nama;
+    public function finishWorkout(Request $request)
+    {
+        $request->validate([
+            'program_id' => 'required|exists:programs,id_program',
+        ]);
 
-    // Cek program ini ada di load user
-    $exists = UserWorkout::where('user_id', $userId)
-                         ->where('program_id', $program_id)
-                         ->exists();
+        if (!Auth::check()) {
+            return redirect()->route('login.form')->with('error', 'Silakan login terlebih dahulu.');
+        }
 
-    if (! $exists) {
-        abort(403, 'Program tidak ada di load Anda.');
+        $userId = Auth::user()->id_nama;
+        $programId = $request->program_id;
+        $tanggalHariIni = now()->format('Y-m-d');
+
+        // 1. Cari atau buat entri kalender hari ini
+        $calendar = Calender::firstOrCreate(
+            ['tanggal_penuh' => $tanggalHariIni],
+            [
+                'hari_calender' => now()->format('l'), // Contoh: Monday
+                'status_calender' => true,
+            ]
+        );
+
+        // 2. Update user_workout untuk set calender_id dan update status
+        $userWorkout = UserWorkout::where('user_id', $userId)
+            ->where('program_id', $programId)
+            ->first();
+
+        if (!$userWorkout) {
+            return redirect()->route('load.index')->with('error', 'Program tidak ditemukan di workout Anda.');
+        }
+
+        $userWorkout->update([
+            'calender_id' => $calendar->id_calender,
+            'status' => 'completed',
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->route('load.index')->with('success', 'Workout selesai dan dicatat di kalender!');
     }
-
-    // Ambil program beserta relasi gerakans
-    $program = Program::with('gerakans')
-                      ->where('id_program', $program_id)
-                      ->firstOrFail();
-
-    // Tampilkan view dengan data $program
-    return view('load.exercises', compact('program'));
-}
-
 }

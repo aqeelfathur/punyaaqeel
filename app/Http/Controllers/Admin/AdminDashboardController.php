@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Program;
 use App\Models\UserWorkout;
-use App\Models\Komentar;
+use App\Models\Post;
 use App\Models\Gerakan; 
 use Carbon\Carbon;
 
@@ -18,7 +18,7 @@ class AdminDashboardController extends Controller
         // Statistik umum
         $totalUsers = User::count();
         $totalPrograms = Program::count();
-        $totalCommunities = Komentar::count();
+        $totalCommunities = Post::count();
         
         // Gunakan created_at untuk menghitung workout hari ini
         $workoutsToday = UserWorkout::whereDate('created_at', Carbon::today())->count();

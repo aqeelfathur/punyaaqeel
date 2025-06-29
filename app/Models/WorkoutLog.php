@@ -5,36 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserWorkout extends Model
+class WorkoutLog extends Model
 {
     use HasFactory;
 
-    protected $table = 'user_workouts';
+    protected $table = 'workout_logs';
 
     protected $fillable = [
         'user_id',
         'program_id',
-        'status',
+        'tanggal_workout',
     ];
 
-    /**
-     * Relasi: UserWorkout milik satu User
-     */
+    // Relasi ke User
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id_nama');
     }
 
-    /**
-     * Relasi: UserWorkout milik satu Program
-     */
+    // Relasi ke Program
     public function program()
     {
         return $this->belongsTo(Program::class, 'program_id', 'id_program');
-    }
-
-    public function calender()
-    {
-        return $this->belongsTo(Calender::class, 'calender_id', 'id_calender');
     }
 }
