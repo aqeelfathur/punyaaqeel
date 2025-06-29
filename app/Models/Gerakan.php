@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Program;
 
 class Gerakan extends Model
 {
@@ -37,4 +38,14 @@ class Gerakan extends Model
     public function getCreatedByUsernameAttribute() {
         return $this->user ? $this->user->username : null;
     }
+    //Relasi many-to-many ke Program lewat pivot detail_programs
+public function programs()
+{
+    return $this->belongsToMany(
+        Program::class,      
+        'detail_programs',   
+        'id_gerakan',        
+        'id_program'         
+    )->withTimestamps();
+}
 }
