@@ -67,7 +67,10 @@ Route::middleware(['auth'])->prefix('programs')->name('programs.')->group(functi
 
 // Main load page - definisikan di luar group
 Route::middleware(['auth'])->get('/load', [LoadController::class, 'index'])->name('load');
-
+// Halaman checklist gerakan untuk program tertentu
+Route::middleware(['auth'])
+     ->get('/load/{program_id}/exercises', [LoadController::class, 'exercises'])
+     ->name('load.exercises');
 // Load API endpoints
 Route::middleware(['auth'])->prefix('load')->name('load.')->group(function () {
     Route::post('/start-workout', [LoadController::class, 'startWorkout'])->name('startWorkout');

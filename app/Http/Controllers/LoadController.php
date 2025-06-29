@@ -212,4 +212,34 @@ class LoadController extends Controller
             return response()->json(['count' => 0]);
         }
     }
+    /**
+ * Show checklist gerakan untuk program tertentu di load user.
+ */
+public function exercises($program_id)
+{
+    // Pastikan user sudah login
+    if (!Auth::check()) {
+        return redirect()->route('login.form');
+    }
+
+    $userId = Auth::user()->id_nama;
+
+    // Cek program ini ada di load user
+    $exists = UserWorkout::where('user_id', $userId)
+                         ->where('program_id', $program_id)
+                         ->exists();
+
+    if (! $exists) {
+        abort(403, 'Program tidak ada di load Anda.');
+    }
+
+    // Ambil program beserta relasi gerakans
+    $program = Program::with('gerakans')
+                      ->where('id_program', $program_id)
+                      ->firstOrFail();
+
+    // Tampilkan view dengan data $program
+    return view('load.exercises', compact('program'));
+}
+
 }

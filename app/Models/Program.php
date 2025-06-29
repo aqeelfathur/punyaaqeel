@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Gerakan;
 
 class Program extends Model
 {
@@ -62,4 +63,13 @@ class Program extends Model
         return $this->belongsToMany(User::class, 'user_workouts', 'program_id', 'user_id')
                     ->withPivot('calender_id');
     }
+    // Relasi many-to-many ke Gerakan
+     public function gerakans()
+{
+    return $this->belongsToMany(
+        Gerakan::class,      
+        'detail_programs',   
+        'id_program',       
+        'id_gerakan'         
+    )->withTimestamps();
 }
