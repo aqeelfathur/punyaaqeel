@@ -9,6 +9,7 @@ use App\Http\Controllers\LoadController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\CalendarController;
 
 
 /*
@@ -88,20 +89,37 @@ Route::middleware(['auth'])->prefix('load')->name('load.')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
+| Calendar Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
+    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
+    
+    Route::prefix('calendar')->name('calendar.')->group(function () {
+        Route::get('/data', [CalendarController::class, 'getCalendarData'])->name('data');
+        Route::get('/workout-details', [CalendarController::class, 'getWorkoutDetails'])->name('workout.details');
+        Route::post('/add-workout', [CalendarController::class, 'addWorkout'])->name('workout.add');
+        Route::delete('/remove-workout', [CalendarController::class, 'removeWorkout'])->name('workout.remove');
+        Route::patch('/complete-workout', [CalendarController::class, 'completeWorkout'])->name('workout.complete');
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
 | Profile Routes
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth'])->group(function () {
-    // Profile & Settings routes (existing)
-    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
-    Route::get('/settings', [ProfileController::class, 'settings'])->name('settings');
-    Route::put('/settings', [ProfileController::class, 'updateSettings'])->name('settings.update');
-    
-    // Profile Image routes (new)
-    Route::post('/settings/image', [ProfileController::class, 'uploadImage'])->name('settings.image.upload');
-    Route::delete('/settings/image', [ProfileController::class, 'deleteImage'])->name('settings.image.delete');
-    Route::get('/profile/image-url', [ProfileController::class, 'getImageUrl'])->name('profile.image.url');
+    Route::prefix('calendar')->name('calendar.')->group(function () {
+        Route::get('/', [CalendarController::class, 'index'])->name('index');
+        Route::get('/data', [CalendarController::class, 'getCalendarData'])->name('data');
+        Route::get('/workout-details', [CalendarController::class, 'getWorkoutDetails'])->name('workout.details');
+        Route::post('/add-workout', [CalendarController::class, 'addWorkout'])->name('workout.add');
+        Route::delete('/remove-workout', [CalendarController::class, 'removeWorkout'])->name('workout.remove');
+        Route::patch('/complete-workout', [CalendarController::class, 'completeWorkout'])->name('workout.complete');
+    });
 });
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -142,21 +160,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/add-programs', function () {
         return view('add-programs');
     })->name('add-programs');
-    
-    // Calendar
-    Route::get('/calendar', function () {
-        return view('calendar');
-    })->name('calendar');
+
     
     // List
     Route::get('/list', function () {
         return view('list');
     })->name('list');
     
-    // Custom workout
-    Route::get('/customworkout', function () {
-        return view('customworkout');
-    })->name('customworkout');
+    
 });
 
 // /*

@@ -11,7 +11,6 @@
                     <li><a href="/workout-programs">Workout Programs</a></li>
                     <li><a href="/load">Load</a></li>
                     <li><a href="/calendar">Calendar</a></li>
-                    <li><a href="/customworkout">Custom</a></li>
                 </ul>
             </li>
             <li><a href="/community" class="{{ request()->is('community') ? 'active' : '' }}">Community</a></li>

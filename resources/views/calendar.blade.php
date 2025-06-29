@@ -1,209 +1,400 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FitTrack Calendar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('css/stylescalender.css') }}">
-</head>
-<body>
-  <!-- Navigation Bar -->
-  <header>
-        <nav>
-            <div class="logo">FIT TRACK</div>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">Programs &#9662;</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="workout-programs">Workout Programs</a></li>
-                        <li><a href="load">Load</a></li>
-                        <li><a href="calendar">Calendar</a></li>
-                        <li><a href="customworkout">Custom</a></li>
-                    </ul>
-                </li>
-                <li><a href="community">Community</a></li>
-                <li><a href="about-us">About Us</a></li>
-            </ul>
-            @auth
-                <div class="user-dropdown">
-                    <button class="user-button">{{ Auth::user()->username }}</button>
-                    <div class="user-dropdown-menu">
-                        <a href="/profile">Profile</a>
-                        <a href="/settings">Settings</a>
-                        <a href="{{ route('logout') }}" 
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
-                </div>
-            @else
-                <a href="/login"><button class="sign-in" aria-label="Sign in">Sign in</button></a>
-            @endauth
-        </nav>
-    </header>
+@extends('layouts.main')
 
-  <!-- Calendar Container -->
-  <div class="calendar-container">
+@section('title', 'FitTrack - Calendar')
+
+@section('additional_css')
+<link rel="stylesheet" href="{{ asset('css/stylescalendar.css') }}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
+@section('content')
+<!-- Calendar Container -->
+<div class="calendar-container">
     <h1 class="calendar-title">Calendar</h1>
     
     <div class="calendar-wrapper">
-      <!-- Main Calendar -->
-      <div class="calendar-main">
-        <div class="calendar-header">
-          <button class="month-nav prev-month">&#8249;</button>
-          <div class="month-display">April 2025</div>
-          <button class="month-nav next-month">&#8250;</button>
+        <!-- Main Calendar -->
+        <div class="calendar-main">
+            <div class="calendar-header">
+                <button class="month-nav prev-month" onclick="navigateMonth('prev')">&#8249;</button>
+                <div class="month-display">{{ $currentDate->format('F Y') }}</div>
+                <button class="month-nav next-month" onclick="navigateMonth('next')">&#8250;</button>
+            </div>
+            
+            <!-- Calendar Days Header -->
+            <div class="calendar-grid">
+                <div class="calendar-day-header">Sun</div>
+                <div class="calendar-day-header">Mon</div>
+                <div class="calendar-day-header">Tue</div>
+                <div class="calendar-day-header">Wed</div>
+                <div class="calendar-day-header">Thu</div>
+                <div class="calendar-day-header">Fri</div>
+                <div class="calendar-day-header">Sat</div>
+                
+                <!-- Empty cells for days before month starts -->
+                @for ($i = 0; $i < $firstDayOfWeek; $i++)
+                    <div class="calendar-day empty-day">
+                        <div class="day-number"></div>
+                    </div>
+                @endfor
+                
+                <!-- Days of the month -->
+                @for ($day = 1; $day <= $daysInMonth; $day++)
+                    @php
+                        $currentDateFormatted = $currentDate->copy()->day($day)->format('Y-m-d');
+                        $hasWorkout = isset($workoutDays[$day]);
+                        $isToday = $currentDate->copy()->day($day)->isToday();
+                        $isSelected = request('selected_date') == $currentDateFormatted;
+                    @endphp
+                    
+                    <div class="calendar-day {{ $hasWorkout ? 'has-workout' : '' }} {{ $isToday ? 'today' : '' }} {{ $isSelected ? 'active' : '' }}" 
+                         data-date="{{ $currentDateFormatted }}" 
+                         onclick="selectDate('{{ $currentDateFormatted }}', {{ $day }})">
+                        <div class="day-number">{{ $day }}</div>
+                        @if($hasWorkout)
+                            <div class="workout-indicator">{{ count($workoutDays[$day]) }}</div>
+                        @endif
+                    </div>
+                @endfor
+                
+                <!-- Fill remaining empty cells -->
+                @php
+                    $totalCells = $firstDayOfWeek + $daysInMonth;
+                    $remainingCells = (7 - ($totalCells % 7)) % 7;
+                @endphp
+                @for ($i = 0; $i < $remainingCells; $i++)
+                    <div class="calendar-day empty-day">
+                        <div class="day-number"></div>
+                    </div>
+                @endfor
+            </div>
         </div>
         
-        <!-- Calendar Days Header -->
-        <div class="calendar-grid">
-          <div class="calendar-day-header">Sun</div>
-          <div class="calendar-day-header">Mon</div>
-          <div class="calendar-day-header">Tue</div>
-          <div class="calendar-day-header">Wed</div>
-          <div class="calendar-day-header">Thu</div>
-          <div class="calendar-day-header">Fri</div>
-          <div class="calendar-day-header">Sat</div>
-          
-          <!-- Week 1 -->
-          <div class="calendar-day" data-date="">
-            <div class="day-number"></div>
-          </div>
-          <div class="calendar-day" data-date="">
-            <div class="day-number"></div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-01">
-            <div class="day-number">1</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-02">
-            <div class="day-number">2</div>
-          </div>
-          <div class="calendar-day has-workout active" data-date="2025-04-03">
-            <div class="day-number">3</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-04">
-            <div class="day-number">4</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-05">
-            <div class="day-number">5</div>
-          </div>
-          
-          <!-- Week 2 -->
-          <div class="calendar-day" data-date="2025-04-06">
-            <div class="day-number">6</div>
-          </div>
-          <div class="calendar-day has-workout" data-date="2025-04-07">
-            <div class="day-number">7</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-08">
-            <div class="day-number">8</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-09">
-            <div class="day-number">9</div>
-          </div>
-          <div class="calendar-day has-workout" data-date="2025-04-10">
-            <div class="day-number">10</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-11">
-            <div class="day-number">11</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-12">
-            <div class="day-number">12</div>
-          </div>
-          
-          <!-- Week 3 -->
-          <div class="calendar-day" data-date="2025-04-13">
-            <div class="day-number">13</div>
-          </div>
-          <div class="calendar-day has-workout" data-date="2025-04-14">
-            <div class="day-number">14</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-15">
-            <div class="day-number">15</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-16">
-            <div class="day-number">16</div>
-          </div>
-          <div class="calendar-day has-workout" data-date="2025-04-17">
-            <div class="day-number">17</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-18">
-            <div class="day-number">18</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-19">
-            <div class="day-number">19</div>
-          </div>
-          
-          <!-- Week 4 -->
-          <div class="calendar-day" data-date="2025-04-20">
-            <div class="day-number">20</div>
-          </div>
-          <div class="calendar-day has-workout" data-date="2025-04-21">
-            <div class="day-number">21</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-22">
-            <div class="day-number">22</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-23">
-            <div class="day-number">23</div>
-          </div>
-          <div class="calendar-day has-workout" data-date="2025-04-24">
-            <div class="day-number">24</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-25">
-            <div class="day-number">25</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-26">
-            <div class="day-number">26</div>
-          </div>
-          
-          <!-- Week 5 -->
-          <div class="calendar-day" data-date="2025-04-27">
-            <div class="day-number">27</div>
-          </div>
-          <div class="calendar-day has-workout" data-date="2025-04-28">
-            <div class="day-number">28</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-29">
-            <div class="day-number">29</div>
-          </div>
-          <div class="calendar-day" data-date="2025-04-30">
-            <div class="day-number">30</div>
-          </div>
-          <div class="calendar-day" data-date="">
-            <div class="day-number"></div>
-          </div>
-          <div class="calendar-day" data-date="">
-            <div class="day-number"></div>
-          </div>
-          <div class="calendar-day" data-date="">
-            <div class="day-number"></div>
-          </div>
+        <!-- Workout Details -->
+        <div class="workout-details">
+            <div class="workout-date" id="selected-date">
+                @if(request('selected_date'))
+                    {{ \Carbon\Carbon::parse(request('selected_date'))->format('j F Y') }}
+                @else
+                    {{ \Carbon\Carbon::today()->format('j F Y') }}
+                @endif
+            </div>
+            
+            <div class="workout-list" id="workout-list">
+                @php
+                    $selectedDay = request('selected_date') ? \Carbon\Carbon::parse(request('selected_date'))->day : \Carbon\Carbon::today()->day;
+                    $selectedWorkouts = $workoutDays[$selectedDay] ?? [];
+                @endphp
+                
+                @if(count($selectedWorkouts) > 0)
+                    @foreach($selectedWorkouts as $workout)
+                        <div class="workout-item" data-workout-id="{{ $workout->id }}">
+                            <div class="workout-title">{{ $workout->program->nama_program ?? 'Unknown Program' }}</div>
+                            <div class="workout-description">{{ $workout->program->deskripsi_program ?? '' }}</div>
+                            <div class="workout-actions">
+                                @if($workout->status == 'scheduled')
+                                    <button class="btn-complete" onclick="completeWorkout({{ $workout->id }})">Complete</button>
+                                @else
+                                    <span class="status-completed">✓ Completed</span>
+                                @endif
+                                <button class="btn-remove" onclick="removeWorkout({{ $workout->id }})">Remove</button>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="no-workouts">
+                        <p>No workouts scheduled for this date.</p>
+                        <button class="btn-add-workout" onclick="showAddWorkoutModal()">Add Workout</button>
+                    </div>
+                @endif
+            </div>
         </div>
-      </div>
-      
-      <!-- Workout Detail -->
-      <div class="workout-details">
-        <div class="workout-date">3 April 2025</div>
-        <div class="workout-list">
-          <div class="workout-item">
-            <div class="workout-title">Upper Program</div>
-            <div class="workout-description">Chest, Shoulders & Triceps</div>
-          </div>
-          <div class="workout-item">
-            <div class="workout-title">Lower Program</div>
-            <div class="workout-description">Quads, Hamstrings & Calves</div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  
-</body>
-</html>
+<!-- Add Workout Modal -->
+<div id="addWorkoutModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Add Workout</h3>
+            <span class="close" onclick="closeAddWorkoutModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="addWorkoutForm">
+                <div class="form-group">
+                    <label for="program_id">Select Program:</label>
+                    <select id="program_id" name="program_id" required>
+                        <option value="">Choose a program...</option>
+                        <!-- Programs will be loaded via AJAX or passed from controller -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="workout_date">Date:</label>
+                    <input type="date" id="workout_date" name="date" required readonly>
+                </div>
+                <div class="form-actions">
+                    <button type="button" onclick="closeAddWorkoutModal()">Cancel</button>
+                    <button type="submit">Add Workout</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Indicator -->
+<div id="loading" class="loading" style="display: none;">
+    <div class="loading-spinner"></div>
+</div>
+
+@endsection
+
+@section('additional_js')
+<script>
+// Global variables
+let currentMonth = {{ $month }};
+let currentYear = {{ $year }};
+let selectedDate = null;
+
+// CSRF Token setup
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+// Navigate between months
+function navigateMonth(direction) {
+    const url = direction === 'prev' 
+        ? "{{ route('calendar.index') }}?month={{ $prevMonth->month }}&year={{ $prevMonth->year }}"
+        : "{{ route('calendar.index') }}?month={{ $nextMonth->month }}&year={{ $nextMonth->year }}";
+    
+    window.location.href = url;
+}
+
+// Select a date and load workouts
+function selectDate(dateStr, day) {
+    // Remove active class from all days
+    document.querySelectorAll('.calendar-day').forEach(el => el.classList.remove('active'));
+    
+    // Add active class to selected day
+    event.target.closest('.calendar-day').classList.add('active');
+    
+    selectedDate = dateStr;
+    
+    // Update selected date display
+    const dateObj = new Date(dateStr);
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    document.getElementById('selected-date').textContent = dateObj.toLocaleDateString('en-US', options);
+    
+    // Load workouts for selected date
+    loadWorkoutDetails(dateStr);
+}
+
+// Load workout details via AJAX
+function loadWorkoutDetails(date) {
+    showLoading();
+    
+    fetch(`{{ route('calendar.workout.details') }}?date=${date}`)
+        .then(response => response.json())
+        .then(data => {
+            updateWorkoutList(data.workouts);
+            hideLoading();
+        })
+        .catch(error => {
+            console.error('Error loading workout details:', error);
+            hideLoading();
+        });
+}
+
+// Update workout list display
+function updateWorkoutList(workouts) {
+    const workoutList = document.getElementById('workout-list');
+    
+    if (workouts.length === 0) {
+        workoutList.innerHTML = `
+            <div class="no-workouts">
+                <p>No workouts scheduled for this date.</p>
+                <button class="btn-add-workout" onclick="showAddWorkoutModal()">Add Workout</button>
+            </div>
+        `;
+    } else {
+        let html = '';
+        workouts.forEach(workout => {
+            html += `
+                <div class="workout-item" data-workout-id="${workout.id}">
+                    <div class="workout-title">${workout.title}</div>
+                    <div class="workout-description">${workout.description}</div>
+                    <div class="workout-actions">
+                        ${workout.status === 'scheduled' 
+                            ? `<button class="btn-complete" onclick="completeWorkout(${workout.id})">Complete</button>`
+                            : `<span class="status-completed">✓ Completed</span>`
+                        }
+                        <button class="btn-remove" onclick="removeWorkout(${workout.id})">Remove</button>
+                    </div>
+                </div>
+            `;
+        });
+        workoutList.innerHTML = html;
+    }
+}
+
+// Complete workout
+function completeWorkout(workoutId) {
+    if (!confirm('Mark this workout as completed?')) return;
+    
+    showLoading();
+    
+    fetch(`{{ route('calendar.workout.complete') }}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ workout_id: workoutId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Refresh workout details
+            if (selectedDate) {
+                loadWorkoutDetails(selectedDate);
+            }
+            // Show success message
+            showMessage('Workout completed successfully!', 'success');
+        } else {
+            showMessage(data.message || 'Error completing workout', 'error');
+        }
+        hideLoading();
+    })
+    .catch(error => {
+        console.error('Error completing workout:', error);
+        showMessage('Error completing workout', 'error');
+        hideLoading();
+    });
+}
+
+// Remove workout
+function removeWorkout(workoutId) {
+    if (!confirm('Are you sure you want to remove this workout?')) return;
+    
+    showLoading();
+    
+    fetch(`{{ route('calendar.workout.remove') }}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ workout_id: workoutId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Refresh the page to update calendar
+            window.location.reload();
+        } else {
+            showMessage(data.message || 'Error removing workout', 'error');
+        }
+        hideLoading();
+    })
+    .catch(error => {
+        console.error('Error removing workout:', error);
+        showMessage('Error removing workout', 'error');
+        hideLoading();
+    });
+}
+
+// Show add workout modal
+function showAddWorkoutModal() {
+    if (!selectedDate) {
+        showMessage('Please select a date first', 'error');
+        return;
+    }
+    
+    document.getElementById('workout_date').value = selectedDate;
+    document.getElementById('addWorkoutModal').style.display = 'block';
+    
+    // Load available programs
+    loadPrograms();
+}
+
+// Close add workout modal
+function closeAddWorkoutModal() {
+    document.getElementById('addWorkoutModal').style.display = 'none';
+    document.getElementById('addWorkoutForm').reset();
+}
+
+// Load available programs
+function loadPrograms() {
+    // This should be implemented based on your program structure
+    // For now, using placeholder data
+    const select = document.getElementById('program_id');
+    select.innerHTML = '<option value="">Loading programs...</option>';
+    
+    // You might want to create a route to get available programs
+    // fetch('/api/programs')...
+}
+
+// Handle add workout form submission
+document.getElementById('addWorkoutForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const data = {
+        date: formData.get('date'),
+        program_id: formData.get('program_id')
+    };
+    
+    showLoading();
+    
+    fetch(`{{ route('calendar.workout.add') }}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            closeAddWorkoutModal();
+            // Refresh the page to update calendar
+            window.location.reload();
+        } else {
+            showMessage(data.message || 'Error adding workout', 'error');
+        }
+        hideLoading();
+    })
+    .catch(error => {
+        console.error('Error adding workout:', error);
+        showMessage('Error adding workout', 'error');
+        hideLoading();
+    });
+});
+
+// Utility functions
+function showLoading() {
+    document.getElementById('loading').style.display = 'block';
+}
+
+function hideLoading() {
+    document.getElementById('loading').style.display = 'none';
+}
+
+function showMessage(message, type) {
+    // You can implement a toast notification system here
+    alert(message); // Simple alert for now
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-select today's date if no date is selected
+    const today = new Date().toISOString().split('T')[0];
+    const todayElement = document.querySelector(`[data-date="${today}"]`);
+    if (todayElement && !document.querySelector('.calendar-day.active')) {
+        todayElement.click();
+    }
+});
+</script>
+@endsection
