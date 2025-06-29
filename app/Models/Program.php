@@ -65,6 +65,7 @@ class Program extends Model
     }
     // Relasi many-to-many ke Gerakan
      public function gerakans()
+<<<<<<< HEAD
     {
         return $this->belongsToMany(
             Gerakan::class,      
@@ -79,3 +80,18 @@ class Program extends Model
     }
 
 }
+=======
+{
+    return $this->belongsToMany(
+        Gerakan::class,      
+        'detail_programs',   
+        'id_program',       
+        'id_gerakan'         
+    )->withTimestamps();
+<<<<<<< HEAD
+}
+}
+=======
+}}
+>>>>>>> 50c9fa1 (load masih error)
+>>>>>>> 6457c1484a279be02bc84d1f9da73e3d858fc6dd

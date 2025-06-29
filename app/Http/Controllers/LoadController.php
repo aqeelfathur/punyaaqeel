@@ -7,7 +7,11 @@ use App\Models\UserWorkout;
 use App\Models\Program;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+<<<<<<< HEAD
 use App\Models\Calender;
+=======
+use App\Models\DetailProgram;
+>>>>>>> 6457c1484a279be02bc84d1f9da73e3d858fc6dd
 
 class LoadController extends Controller
 {
@@ -212,8 +216,10 @@ class LoadController extends Controller
             Log::error('Error getting load count: ' . $e->getMessage());
             return response()->json(['count' => 0]);
         }
+
     }
     /**
+<<<<<<< HEAD
      * Show checklist gerakan untuk program tertentu di load user.
      */
     public function exercises($program_id)
@@ -241,6 +247,15 @@ class LoadController extends Controller
         $detailPrograms = $program->detailPrograms;
 
         return view('load.exercises', compact('program', 'detailPrograms'));
+=======
+ * Show checklist gerakan untuk program tertentu.
+ */
+public function exercises($program_id)
+{
+    // 1) Pastikan user login
+    if (!Auth::check()) {
+        return redirect()->route('login.form');
+>>>>>>> 6457c1484a279be02bc84d1f9da73e3d858fc6dd
     }
 
     public function finishWorkout(Request $request)
@@ -249,6 +264,7 @@ class LoadController extends Controller
             'program_id' => 'required|exists:programs,id_program',
         ]);
 
+<<<<<<< HEAD
         if (!Auth::check()) {
             return redirect()->route('login.form')->with('error', 'Silakan login terlebih dahulu.');
         }
@@ -283,4 +299,30 @@ class LoadController extends Controller
 
         return redirect()->route('load.index')->with('success', 'Workout selesai dan dicatat di kalender!');
     }
+=======
+    // 2) Cek ownership di user_workouts
+    if (! UserWorkout::where('user_id', $userId)
+                     ->where('program_id', $program_id)
+                     ->exists()) {
+        abort(403, 'Program tidak ada di load Anda.');
+    }
+
+    // 3) Ambil program + detailPrograms (pivot detail_programs → gerakan)
+    $program = Program::with('details.gerakan')
+                      ->where('id_program', $program_id)
+                      ->firstOrFail();
+
+    $detailPrograms = $program->details; 
+
+    // 4) RETURN ke VIEW 'list' (resources/views/list.blade.php)
+    return view('list', compact('program', 'detailPrograms'));
+}
+
+
+    /**
+ * Show checklist gerakan untuk program tertentu di load user.
+ */
+
+
+>>>>>>> 6457c1484a279be02bc84d1f9da73e3d858fc6dd
 }
