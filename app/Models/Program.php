@@ -73,3 +73,4 @@ class Program extends Model
         'id_gerakan'         
     )->withTimestamps();
 }
+}
