@@ -67,11 +67,12 @@
                                     </p>
                                     
                                     <div class="card-actions">
-                                        <button class="workout-btn" 
-                                                data-program-id="{{ $program->id_program }}">
-                                            <span class="material-icons" style="font-size: 16px;">play_arrow</span>
-                                            Start Workout
-                                        </button>
+    
+    <a href="{{ route('load.exercises', $program->id_program) }}"
+       class="btn btn-success">
+        <span class="material-icons" style="font-size: 16px;">play_arrow</span>
+        Start Exercise
+    </a>
                                         <button class="remove-btn" 
                                                 data-workout-id="{{ $program->workout_id }}"
                                                 data-program-name="{{ $program->nama_program }}">

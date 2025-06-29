@@ -7,6 +7,7 @@ use App\Models\UserWorkout;
 use App\Models\Program;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Models\DetailProgram;
 
 class LoadController extends Controller
 {
@@ -211,35 +212,42 @@ class LoadController extends Controller
             Log::error('Error getting load count: ' . $e->getMessage());
             return response()->json(['count' => 0]);
         }
+
     }
     /**
- * Show checklist gerakan untuk program tertentu di load user.
+ * Show checklist gerakan untuk program tertentu.
  */
 public function exercises($program_id)
 {
-    // Pastikan user sudah login
+    // 1) Pastikan user login
     if (!Auth::check()) {
         return redirect()->route('login.form');
     }
 
     $userId = Auth::user()->id_nama;
 
-    // Cek program ini ada di load user
-    $exists = UserWorkout::where('user_id', $userId)
-                         ->where('program_id', $program_id)
-                         ->exists();
-
-    if (! $exists) {
+    // 2) Cek ownership di user_workouts
+    if (! UserWorkout::where('user_id', $userId)
+                     ->where('program_id', $program_id)
+                     ->exists()) {
         abort(403, 'Program tidak ada di load Anda.');
     }
 
-    // Ambil program beserta relasi gerakans
-    $program = Program::with('gerakans')
+    // 3) Ambil program + detailPrograms (pivot detail_programs → gerakan)
+    $program = Program::with('details.gerakan')
                       ->where('id_program', $program_id)
                       ->firstOrFail();
 
-    // Tampilkan view dengan data $program
-    return view('load.exercises', compact('program'));
+    $detailPrograms = $program->details; 
+
+    // 4) RETURN ke VIEW 'list' (resources/views/list.blade.php)
+    return view('list', compact('program', 'detailPrograms'));
 }
+
+
+    /**
+ * Show checklist gerakan untuk program tertentu di load user.
+ */
+
 
 }

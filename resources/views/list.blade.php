@@ -12,7 +12,7 @@
     <div class="workout-container">
         <!-- Header Section -->
         <div class="workout-header">
-            <a href="{{ route('programs.index') }}" class="back-btn">
+            <a href="{{ route('load') }}" class="back-btn">
                 <i class="fas fa-arrow-left"></i>
             </a>
             <div class="header-content">

@@ -72,5 +72,9 @@ class Program extends Model
         'id_program',       
         'id_gerakan'         
     )->withTimestamps();
+<<<<<<< HEAD
 }
 }
+=======
+}}
+>>>>>>> 50c9fa1 (load masih error)
