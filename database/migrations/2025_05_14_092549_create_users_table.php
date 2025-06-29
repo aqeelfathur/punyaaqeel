@@ -18,6 +18,7 @@ return new class extends Migration
             $table->boolean('is_admin')->default(false);
             $table->string('email');
             $table->string('phone_number');
+            $table->string('profile_image')->nullable(); // Kolom untuk menyimpan path/nama file gambar profil
             $table->timestamps();
         });
     }

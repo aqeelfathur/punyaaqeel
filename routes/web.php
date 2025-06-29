@@ -8,6 +8,7 @@ use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\LoadController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\CommunityController;
 
 
 /*
@@ -24,10 +25,17 @@ Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
 
-Route::get('/community', function () {
-    return view('community');
-})->name('community');
-
+/*
+|--------------------------------------------------------------------------
+| Community Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
+    Route::get('/community', [CommunityController::class, 'index'])->name('community.index');
+    Route::post('/community/post', [CommunityController::class, 'storePost'])->name('community.post');
+    Route::post('/community/{postId}/comment', [CommunityController::class, 'storeComment'])->name('community.comment');
+    Route::post('/community/{postId}/like', [CommunityController::class, 'toggleLike'])->name('community.like');
+});
 /*
 |--------------------------------------------------------------------------
 | Authentication Routes
@@ -58,7 +66,7 @@ Route::middleware(['auth'])->prefix('workout')->name('workout.')->group(function
 |--------------------------------------------------------------------------
 */
 
-// Taruh sebelum Route::middleware(['auth'])->group
+/// Taruh sebelum Route::middleware(['auth'])->group
 Route::middleware(['auth'])->prefix('programs')->name('programs.')->group(function () {
     Route::get('/', [WorkoutController::class, 'programsList'])->name('index');
     Route::get('/{id}', [WorkoutController::class, 'showProgram'])->name('show'); 
@@ -67,7 +75,10 @@ Route::middleware(['auth'])->prefix('programs')->name('programs.')->group(functi
 
 // Main load page - definisikan di luar group
 Route::middleware(['auth'])->get('/load', [LoadController::class, 'index'])->name('load');
-
+// Halaman checklist gerakan untuk program tertentu
+Route::middleware(['auth'])
+     ->get('/load/{program_id}/exercises', [LoadController::class, 'exercises'])
+     ->name('load.exercises');
 // Load API endpoints
 Route::middleware(['auth'])->prefix('load')->name('load.')->group(function () {
     Route::post('/start-workout', [LoadController::class, 'startWorkout'])->name('startWorkout');
@@ -81,11 +92,16 @@ Route::middleware(['auth'])->prefix('load')->name('load.')->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth'])->group(function () {
+    // Profile & Settings routes (existing)
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::get('/settings', [ProfileController::class, 'settings'])->name('settings');
     Route::put('/settings', [ProfileController::class, 'updateSettings'])->name('settings.update');
+    
+    // Profile Image routes (new)
+    Route::post('/settings/image', [ProfileController::class, 'uploadImage'])->name('settings.image.upload');
+    Route::delete('/settings/image', [ProfileController::class, 'deleteImage'])->name('settings.image.delete');
+    Route::get('/profile/image-url', [ProfileController::class, 'getImageUrl'])->name('profile.image.url');
 });
-
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -105,6 +121,7 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
         return redirect()->route('settings');
     })->name('settings');
 });
+
 
 /*
 |--------------------------------------------------------------------------
